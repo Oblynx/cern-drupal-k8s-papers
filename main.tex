@@ -1,0 +1,144 @@
+%%%%%%%%%%%%%%%%%%%%%%% file template.tex %%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% This is a template file for Web of Conferences Journal
+%
+% Copy it to a new file with a new name and use it as the basis
+% for your article
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%% EDP Science %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%%%\documentclass[option]{webofc}
+%%% "twocolumn" for typesetting an article in two columns format (default one column)
+%
+\documentclass{webofc}
+\usepackage[varg]{txfonts}   % Web of Conferences font
+%
+% Put here some packages required or/and some personal commands
+%
+%
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    urlcolor=cyan,
+}
+
+\begin{document}
+%
+\title{CERN's 1500 Drupal Websites Move to Kubernetes}
+%
+% subtitle is optional
+%
+%%%\subtitle{Do you have a subtitle?\\ If so, write it here}
+
+\author{\firstname{Konstantinos} \lastname{Samaras-Tsakiris}\inst{1}\fnsep\thanks{\email{konstantinos.samaras-tsakiris@cern.ch}} \and
+        \firstname{Rajula} \lastname{Vineet Reddy}\inst{1}\fnsep \and
+        \firstname{Francisco} \lastname{Borges Aurindo Barros}\inst{1,2}\fnsep \and
+        \firstname{Eduardo} \lastname{Alvarez Fernandez}\inst{1}
+        % etc.
+}
+
+\institute{CERN
+\and
+           Francisco's uni %TODO
+          }
+
+\abstract{%
+The infrastructure behind \href{https://home.cern}{home.cern} and 1500 other Drupal websites serves more than [24k unique visitors daily].
+To best serve the site owners, a small Drupal team needs development speed to adapt to their evolving needs and operational velocity to troubleshoot emerging problems rapidly.
+We designed a new web frameworks platform by extending Kubernetes to replace the ageing linux infrastructure and reduce the dependence on homebrew components.
+
+The new platform is modular, built around standard components and thus less complex to operate.
+Some requirements are covered solely by upstream industry-standard projects, 
+whereas others by components shared across CERN's web hosting platforms.
+We leverage the \href{https://sdk.operatorframework.io/docs/}{Operator framework} and the Kubernetes API
+to get observability, policy enforcement, access control and auditing, and high availability for free.
+Thanks to containers and namespaces, websites are isolated.
+This isolation clarifies security boundaries and minimizes attack surface, while empowering site owners.
+
+As the project enters its pilot phase, at vCHEP 2021 we will present the design and operational insights of this system, demonstrating how we drastically reduced our technical debt.
+We will be available to discuss all the details.
+}
+%
+\maketitle
+%
+\section{Introduction}
+\label{intro}
+Your text comes here. Separate text sections with
+\section{Section title}
+\label{sec-1}
+For bibliography use \cite{RefJ}
+\subsection{Subsection title}
+\label{sec-2}
+Don't forget to give each section, subsection, subsubsection, and
+paragraph a unique label (see Sect.~\ref{sec-1}).
+
+For one-column wide figures use syntax of figure~\ref{fig-1}
+\begin{figure}[h]
+% Use the relevant command for your figure-insertion program
+% to insert the figure file.
+\centering
+\includegraphics[width=1cm,clip]{tiger}
+\caption{Please write your figure caption here}
+\label{fig-1}       % Give a unique label
+\end{figure}
+
+For two-column wide figures use syntax of figure~\ref{fig-2}
+\begin{figure*}
+\centering
+% Use the relevant command for your figure-insertion program
+% to insert the figure file. See example above.
+% If not, use
+\vspace*{5cm}       % Give the correct figure height in cm
+\caption{Please write your figure caption here}
+\label{fig-2}       % Give a unique label
+\end{figure*}
+
+For figure with sidecaption legend use syntax of figure
+\begin{figure}
+% Use the relevant command for your figure-insertion program
+% to insert the figure file.
+\centering
+\sidecaption
+\includegraphics[width=5cm,clip]{tiger}
+\caption{Please write your figure caption here}
+\label{fig-3}       % Give a unique label
+\end{figure}
+
+For tables use syntax in table~\ref{tab-1}.
+\begin{table}
+\centering
+\caption{Please write your table caption here}
+\label{tab-1}       % Give a unique label
+% For LaTeX tables you can use
+\begin{tabular}{lll}
+\hline
+first & second & third  \\\hline
+number & number & number \\
+number & number & number \\\hline
+\end{tabular}
+% Or use
+\vspace*{5cm}  % with the correct table height
+\end{table}
+%
+% BibTeX or Biber users please use (the style is already called in the class, ensure that the "woc.bst" style is in your local directory)
+% \bibliography{name or your bibliography database}
+%
+% Non-BibTeX users please use
+%
+\begin{thebibliography}{}
+%
+% and use \bibitem to create references.
+%
+\bibitem{RefJ}
+% Format for Journal Reference
+Journal Author, Journal \textbf{Volume}, page numbers (year)
+% Format for books
+\bibitem{RefB}
+Book Author, \textit{Book title} (Publisher, place, year) page numbers
+% etc
+\end{thebibliography}
+
+\end{document}
+
+% end of file template.tex
