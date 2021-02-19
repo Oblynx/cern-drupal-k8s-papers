@@ -22,8 +22,12 @@ Ideally, the changes should be almost transparent for non-technical site adminis
 
 \begin{figure}[h]
 \centering
-\includegraphics[width=1cm,clip]{/figures/}
-\caption{Please write your figure caption here}
+\includegraphics[width=.5\textwidth]{figures/drupal-top10-uniqClientIP.png}
+\caption{Calculating the unique client IPs over a month from Apache logs and grouping per site
+is taken as a proxy measure of a site's publicity, or how much impact it has on the Organization's reputation.
+In this figure the top 10 most public Drupal websites are shown.
+home.cern appears twice as home.cern and home.web.cern.ch (but it's the same website)
+}
 \label{fig-1}       % Give a unique label
 \end{figure}
 <graph: kibana top10 uniqueIP stacked bar> %  https://monit-timber-drupal-prod8.cern.ch/kibana/app/kibana#/visualize/create?type=histogram&indexPattern=d2ef41c0-e515-11e9-886e-69c303354aa9&_g=(refreshInterval:(pause:!t,value:0),time:(from:now-1M,to:now))&_a=(filters:!(),linked:!f,query:(language:kuery,query:'data.program:%22httpd%22'),uiState:(),vis:(aggs:!((enabled:!t,id:'1',params:(field:data.clientip),schema:metric,type:cardinality),(enabled:!t,id:'2',params:(field:data.sitename,missingBucket:!f,missingBucketLabel:Missing,order:desc,orderBy:'1',otherBucket:!t,otherBucketLabel:Other,size:10),schema:group,type:terms)),params:(addLegend:!t,addTimeMarker:!f,addTooltip:!t,categoryAxes:!((id:CategoryAxis-1,labels:(show:!t,truncate:100),position:bottom,scale:(type:linear),show:!t,style:(),title:(),type:category)),grid:(categoryLines:!f),legendPosition:right,seriesParams:!((data:(id:'1',label:'Unique%20count%20of%20data.clientip'),drawLinesBetweenPoints:!t,mode:stacked,show:true,showCircles:!t,type:histogram,valueAxis:ValueAxis-1)),times:!(),type:histogram,valueAxes:!((id:ValueAxis-1,labels:(filter:!f,rotate:0,show:!t,truncate:100),name:LeftAxis-1,position:left,scale:(mode:percentage,type:linear),show:!t,style:(),title:(text:'Unique%20count%20of%20data.clientip'),type:value))),title:'New%20Visualization',type:histogram))
