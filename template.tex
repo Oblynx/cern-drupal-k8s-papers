@@ -64,18 +64,86 @@ We will be available to discuss all the details.
 %
 \section{Introduction}
 \label{intro}
-\input{sections/intro}
 
-\section{What is the Drupal service?}
-\label{sec-drupalsvc}
-\input{sections/service}
+\section{Load characteristics}
+\label{sec-load}
 
-\section{Kubernetes infrastructure design}
-\label{sec-k8s-design}
-\input{sections/k8s-design}
+Tell a story about who visits the Drupal infra.
+- as a whole
+- for home.cern
+- for top 10 websites
+=> define QoS classes
 
-\section{Experiment}
-\label{sec-experiment}
-\input{sections/experiment}
+For bibliography use \cite{RefJ}
+
+\subsection{Subsection title}
+\label{sec-2}
+
+
+For one-column wide figures use syntax of figure~\ref{fig-1}
+\begin{figure}[h]
+% Use the relevant command for your figure-insertion program
+% to insert the figure file.
+\centering
+\includegraphics[width=1cm,clip]{tiger}
+\caption{Please write your figure caption here}
+\label{fig-1}       % Give a unique label
+\end{figure}
+
+For two-column wide figures use syntax of figure~\ref{fig-2}
+\begin{figure*}
+\centering
+% Use the relevant command for your figure-insertion program
+% to insert the figure file. See example above.
+% If not, use
+\vspace*{5cm}       % Give the correct figure height in cm
+\caption{Please write your figure caption here}
+\label{fig-2}       % Give a unique label
+\end{figure*}
+
+For figure with sidecaption legend use syntax of figure
+\begin{figure}
+% Use the relevant command for your figure-insertion program
+% to insert the figure file.
+\centering
+\sidecaption
+\includegraphics[width=5cm,clip]{tiger}
+\caption{Please write your figure caption here}
+\label{fig-3}       % Give a unique label
+\end{figure}
+
+For tables use syntax in table~\ref{tab-1}.
+\begin{table}
+\centering
+\caption{Please write your table caption here}
+\label{tab-1}       % Give a unique label
+% For LaTeX tables you can use
+\begin{tabular}{lll}
+\hline
+first & second & third  \\\hline
+number & number & number \\
+number & number & number \\\hline
+\end{tabular}
+% Or use
+\vspace*{5cm}  % with the correct table height
+\end{table}
+%
+% BibTeX or Biber users please use (the style is already called in the class, ensure that the "woc.bst" style is in your local directory)
+% \bibliography{name or your bibliography database}
+%
+% Non-BibTeX users please use
+%
+\begin{thebibliography}{}
+%
+% and use \bibitem to create references.
+%
+\bibitem{RefJ}
+% Format for Journal Reference
+Journal Author, Journal \textbf{Volume}, page numbers (year)
+% Format for books
+\bibitem{RefB}
+Book Author, \textit{Book title} (Publisher, place, year) page numbers
+% etc
+\end{thebibliography}
 
 \end{document}
