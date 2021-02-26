@@ -1,13 +1,79 @@
-Intro.
-Problem statement. Change infra -> kubernetes, reduce tech debt.
-Google rewrites software every few years.
+Google rewrites most of their software every few years \cite{henderson_software_2020}.
+This surprising activity consumes a large fraction of their resources each year!
+And yet, they consider it crucial to their agility and long-term success, because software requirements change as technologies evolve -- and with them, user expectations.
+This practice typically reduces unnecessary complexity in each iteration,
+and transfers knowledge into the new generation of engineers.
 
-Motivations, outline.
+All these factors apply as much to CERN as they apply to Google.
+Despite the much slower pace at which services evolve, CERN lives in the same dynamic technological environment.
+Without a constant input of effort our software falls behind and fails to address modern expectations
+in such aspects as security, high availability, portability and isolation.
+At the same time unnecessary complexity accumulates:
+yesterday's custom solutions can often be replaced with new upstream components,
+the product of continuous standardization of solutions to problems that affect entire industries.
 
-/subsection{Why Kubernetes?}
+The increasing divergence between the original requirements the specified a piece of software and present requirements
+results in \emph{technical debt} \cite{fairbanks_ur-technical_2020}.
+The main purpose of this work is to pay back technical debt in CERN's Content Management Systems by modernizing the software architecture
+and making the service more secure and flexible.
+
+
+\subsection{Introduction to the concepts in this work}
+
+\subsubsection*{Why Kubernetes?}
+
+Kubernetes is for cloud native applications an extension of what the operating system is for traditional applications.
+This is highlighted by the moniker "cloud operating system".
+It is becoming a de facto standard for Platform as a Service, abstracting computational infrastructure and making applications deployable to sites across the globe.
+
+
 
 - common platform across web frameworks
 - common components, reuse, expertise sharing
 - isolation
 
 Mention Operators.
+
+\subsubsection*{What is Drupal?}
+\label{what-is-drupal}
+
+Drupal is an open-source content management system (CMS): a tool for site builders to organize and deliver content to their website visitors.
+It's used in 10\% of the top-10k websites with the highest traffic \cite{builtwith_pty_ltd_open_nodate},\cite{q-success_di_gelbmann_gmbh_wordpress_nodate}.
+
+% TODO
+Who is the intended audience that can benefit from a Drupal infrastructure?
+- an organization that needs a dynamic Drupal environment, with lots of site turnover
+- eg: universities, organizations comprising many departments and independent activities
+% TODO
+
+The market leader in Drupal's niche is the CMS WordPress \cite{builtwith_pty_ltd_open_nodate}.
+Drupal is often contrasted with it and, according to UX surveys conducted by a Drupal-focused company, seems to offer a complicated start for beginner users,
+but a powerful experience for experts \cite{buytaert_state_nodate}.
+
+Drupal is frequently embraced for being an open source community driven project, which makes it strategically attractive for enterprise sustainability \cite{cern_geneva_real_2019}.
+Use cases range from simple blogs to professional newspaper publishing, from enterprise presentation to e-commerce, across government and private sector entities \cite{drupal_community_explore_nodate}.
+A frequently cited feature is the flexibility with which it adapts to bespoke requirements, while scaling to large amounts of content.
+
+\subsubsection*{Drupal at CERN}
+\label{drupal-at-cern}
+
+Content Management Systems -> Drupal
+
+The Drupal service at CERN was established in 2011, responding to a need for a standardized and user-friendly website environment in the Organization.
+Before this, the websites ecosystem was technologically diverse, lacking standards and institutional support.
+The tool was selected over competitors due its extensibility, existing contributed modules and active community.
+
+At CERN, Drupal has become the platform of choice for public outreach.
+We have developed in-house expertise on both Drupal development (with custom themes and components) and hosting.
+
+\subsection{Article structure}
+
+Having laid down background information on the motivation, technologies and concepts used in this work, in the following sections we will describe:
+
+\begin{tabular}{l|l}
+    Section \ref{sec-drupalsvc} & Content Management as a Service at CERN: \emph{what problem are solving?} \\
+    Section \ref{sec-phys-infra} & The current implementation of the Drupal service \\
+    Section \ref{sec-k8s-design} & The Kubernetes design of its successor, currently in Pilot \\
+    Section \ref{sec-experiment} & A preliminary experimental validation of the new platform \\
+    Section \ref{sec-discussion} & Plans for the future and the nuances of this work \\
+\end{tabular}

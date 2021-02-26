@@ -1,0 +1,47 @@
+\subsection{Service level indicators}
+
+- entire infra: 250 req/sec
+- critical website: 35 req/sec
+- standard website: 5-10 req/sec % TODO set final value
+- test website: 2 max threads
+
+- Find configuration that is able to handle specified req/sec load
+- Two Graphs (1 for critical and 1 normal), showing AVG response time plots + Request per second plots
+- See the Resources usage for each configuration
+- Make an estimation of total resources , note that critical websites will have $(MAX_LOAD) + 2(IDLE_LOAD)$ since they will have 3 pods
+
+Total number of Critical websites: 20
+Total number of Standard websites: 600
+Total number of Test websites: 500
+
+
+- Make an estimation of total infra resources ( sum to the estimation of total resources with openshift-* elements)
+
+% #### Resources used in the physical infra:
+% - Memory: 2TB
+% - CPU: 512
+
+\subsection{Stress test setup}
+
+
+ (we have provioned websites and migrated data from the old infra)
+\subsubsection*{Stress load}
+
+To evaluate the behavior of our Kubernetes infrastructure, with the goal of analysing the new infrastructure's capability of answering the same needs with fewer resources, the following experiment was conducted.
+
+The following elements were required, 
+
+The experiment has a dedicated Kubernetes cluster that deploys a custom tool that will simulate users. 
+The simulation of users is done by running multiple \hyperlink{https://kubernetes.io/docs/concepts/workloads/pods/}{Pods}, each containing multiple processes that will request URLs at random\footnote{It iterates urls through the website to discover all the URLs, and only after having all the URLs, it connects to one of them at random}.
+
+Multiple runs have been made with different number of parallel users per .
+
+We observed that after a number of parallel users in the same pod, the users would get bottle-necked by Pod network constraints. So for our tests we observer that each Pod could have no more than 5 users before network constraints would interfere.
+
+Important notes:
+- RAM consumption before first connection is ~11MiB, 500 to 600MiB after (even if no accesses are being done)
+- Time used for a stress run was decided to be 6min because it's enough to see the stabilized response time
+
+\subsubsection*{Measurements}
+
+\subsection{Results: resource provision}

@@ -22,14 +22,14 @@
     linkcolor=blue,
     urlcolor=cyan,
 }
+\usepackage{wrapfig}
+\usepackage{tabularx}
+\usepackage{svg}
 
 \begin{document}
-%
-\title{CERN's 1000 Drupal Websites Move to Kubernetes}
-%
-% subtitle is optional
-%
-%%%\subtitle{Do you have a subtitle?\\ If so, write it here}
+%\title{CERN's 1000 Drupal Websites Move to Kubernetes}
+\title{Building a Kubernetes infrastructure for CERN's Content Management Systems}
+% NOTE: Drupal is probably not a relevant keyword for our audience to be in the title.
 
 \author{\firstname{Konstantinos} \lastname{Samaras-Tsakiris}\inst{1}\fnsep\thanks{\email{konstantinos.samaras-tsakiris@cern.ch}} \and
         \firstname{Rajula} \lastname{Vineet Reddy}\inst{1}\fnsep \and
@@ -38,15 +38,15 @@
         % etc.
 }
 
-\institute{CERN
-\and
-           Francisco's uni %TODO
-          }
+\institute{
+    CERN \and
+    Francisco's uni %TODO
+}
 
 \abstract{%
-The infrastructure behind \href{https://home.cern}{home.cern} and 1000 other Drupal websites serves more than 15k unique visitors daily.
-To best serve the site owners, a small Drupal team needs development speed to adapt to their evolving needs and operational velocity to troubleshoot emerging problems rapidly.
-We designed a new web frameworks platform by extending Kubernetes to replace the ageing linux infrastructure and reduce the dependence on homebrew components.
+The infrastructure behind \href{https://home.cern}{home.cern} and 1000 other Drupal websites serves more than 15,000 unique visitors daily.
+To best serve the site owners, a small engineering team needs development speed to adapt to their evolving needs and operational velocity to troubleshoot emerging problems rapidly.
+We designed a new Web Frameworks platform by extending Kubernetes to replace the ageing physical infrastructure and reduce the dependency on homebrew components.
 
 The new platform is modular, built around standard components and thus less complex to operate.
 Some requirements are covered solely by upstream industry-standard projects, 
@@ -62,7 +62,7 @@ We will be available to discuss all the details.
 %
 \maketitle
 %
-\section{Introduction}
+\section{Motivation and context}
 \label{intro}
 \input{sections/intro}
 
@@ -70,12 +70,21 @@ We will be available to discuss all the details.
 \label{sec-drupalsvc}
 \input{sections/service}
 
-\section{Kubernetes infrastructure design}
+\section{The current (physical) infrastructure}
+\label{sec-phys-infra}
+\input{sections/phys-infra}
+
+\section{Designing the Kubernetes infrastructure}
 \label{sec-k8s-design}
 \input{sections/k8s-design}
 
-\section{Experiment}
+\section{Measuring baseline resource requirements}
 \label{sec-experiment}
 \input{sections/experiment}
 
+\section{Discussion}
+\label{sec-discussion}
+\input{sections/discussion}
+
+\bibliography{references.bib}
 \end{document}
