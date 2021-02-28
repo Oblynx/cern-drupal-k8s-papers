@@ -1,7 +1,7 @@
-\begin{figure}[t]
+\begin{wrapfigure}{r}{.62\textwidth}
     \centering
     \hspace{-2em}
-    \includegraphics[width=\textwidth]{figures/drupal-physical-request-journey}
+    \includegraphics[width=.66\textwidth]{figures/drupal-physical-request-journey}
     \caption{\emph{Request journey in the physical infrastructure}.
     The infrastructure consists of 8 physical Linux servers behind a floating IP, equipped with NAS storage.
     The {\color{blue} datapath} to access a site is shown in blue. 
@@ -9,7 +9,7 @@
     The website's {\color{asparagus} 2 data components}: a persistent directory on the NAS and a database on an external service (DBOD).
     }
     \label{fig:drupal-physical-request-journey}
-\end{figure}
+\end{wrapfigure}
 
 The infrastructure that currently serves the Drupal websites can be see in figure \ref{fig:drupal-physical-request-journey}.
 It runs on CENTOS 7 and uses Puppet for configuration management.

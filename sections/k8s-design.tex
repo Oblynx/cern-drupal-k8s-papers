@@ -1,9 +1,9 @@
-\begin{figure}[t]
+\begin{wrapfigure}{r}{.62\textwidth}
     \centering
-    \includegraphics[width=\textwidth]{figures/drupal-k8s-request-journey}
+    \includegraphics[width=.66\textwidth]{figures/drupal-k8s-request-journey}
     \caption{\emph{Request journey in the Kubernetes infrastructure}. Contrast with figure \ref{fig:drupal-physical-request-journey}.}
     \label{fig:drupal-k8s-request-journey}
-\end{figure}
+\end{wrapfigure}
 
 \subsection{Common Kubernetes infrastructure for all Web Frameworks}
 \label{sec-web-frameworks}
@@ -39,16 +39,16 @@ At the same time, the Platform as a Service and Drupal use cases are in Pilot ph
 
 \subsection{Drupal on Kubernetes}
 
-\begin{figure}[t]
+\begin{wrapfigure}{r}{.62\textwidth}
     \centering
-    \includegraphics[width=1.05\textwidth]{figures/drupal-architecture}
+    \includegraphics[width=.66\textwidth]{figures/drupal-architecture}
     \caption{\emph{Drupal cluster architecture}.
     The diagram presents the Kubernetes resources that {\color{darkseagreen} make up a Drupal site},
     the {\color{carolinablue} controllers} that manage them and the cluster infrastructure,
     and the {\color{beige} external CERN systems} with which the cluster integrates.
     The Drupal API is the {\color{fluorescentorange} DrupalSite CRD}.}
     \label{fig:drupal-architecture}
-\end{figure}
+\end{wrapfigure}
 
 The physical servers are replaced with a cluster of virtual machines composing an OKD 4 cluster.
 Each website is served by 1 or multiple replicas of a pod with Nginx and PHP-FPM containers.

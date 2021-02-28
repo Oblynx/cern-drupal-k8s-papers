@@ -77,29 +77,32 @@ The following tables show the highest response time under full stress and lowest
 
 \begin{table}[!htb]
 \centering
-\parbox{.45\linewidth}{
+
+\begin{tabular}{|l|ll|ll}
+\cline{1-3}
+\textbf{website} & \multicolumn{1}{l|}{\textbf{Stress (req/s)}} & \textbf{Response (ms)} &  &  \\ \cline{1-3}
+nurseryschool    & 10                                           & 510                    &  &  \\ \cline{1-1}
+fluka            & 26                                           & 570                    &  &  \\ \cline{1-3}
+\end{tabular}
+\caption{Test QoS Values}
+
+
 \begin{tabular}{|l|ll|ll}
 \cline{1-3}
 \textbf{website} & \multicolumn{1}{l|}{\textbf{Stress (req/s)}} & \textbf{Response (ms)} &  &  \\ \cline{1-3}
 nurseryschool    & 18                                           & 240                    &  &  \\ \cline{1-1}
 fluka            & 48                                           & 103                    &  &  \\ \cline{1-3}
 \end{tabular}
-}
 \hfill
 \caption{Standard QoS values}
-\parbox{.45\linewidth}
-{\begin{tabular}{|l|ll|ll}
+\begin{tabular}{|l|ll|ll}
 \cline{1-3}
 \textbf{website} & \multicolumn{1}{l|}{\textbf{Stress (req/s)}} & \textbf{Response (ms)} &  &  \\ \cline{1-3}
 nurseryschool    & 41  & 870   &  &  \\ \cline{1-1}
 fluka            & 74  & 600   &  &  \\ \cline{1-3}
 \end{tabular}
-}
-\caption{ Critical QoS values}
+\caption{Critical QoS values}
 \end{table}
-
-
-
 
 
 %Table \ref{tabel_of_resources}
@@ -125,8 +128,8 @@ For expected memory:
 \[
 \begin{array}{rcl}
 TotalMem & = & C * L + 2* C * I + S * L + T * L \\
- & = & 20 * 960MiB + 20*104MiB + 600*257MiB + 500*200MiB \\
- & = & XYZ MiB = XYZGB
+ & = & 20 * 960MiB + 20*104MiB + 600*309MiB + 500*125MiB \\
+ & = & 269180MiB  \approx  282.3GB
 \end{array}
 \]
 Where:
@@ -139,7 +142,7 @@ Expected Load  &  Max Seen load + 20\% overhead \\
  T     & Total number of Test Websites \\
 \end{conditions}
 
-On the physical infrastructure we have provisioned 2TB of memory, on the new Kubernetes infrastructure we have a rough estimation on total memory used if all websites are under load is of about 443GB. The prediction expects to only have 22.15\% of the memory required in the physical infrastructure.
+On the physical infrastructure we have provisioned 2TB of memory, on the new Kubernetes infrastructure we have a rough estimation on total memory used if all websites are under load is of about 283GB. The prediction expects to only have 14.15\% of the memory required in the physical infrastructure.
 
 
 For expected cpu:
