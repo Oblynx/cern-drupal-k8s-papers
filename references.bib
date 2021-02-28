@@ -1,4 +1,112 @@
 
+@inproceedings{shteiman_why_2014,
+	title = {Why {CMS} platforms are breeding security vulnerabilities},
+	volume = {2014},
+	url = {https://www.sciencedirect.com/science/article/pii/S1353485814700066},
+	doi = {10.1016/S1353-4858(14)70006-6},
+	abstract = {Several statistics-gathering engines on the web reveal an interesting picture. Content management systems (CMS) have become far more popular in the past couple of years. A trend graph over at builtwith.com shows that over 20\% of the top 10,000 websites rely on CMS.1 And it's fair to assume that the number is higher for companies that use a CMS as a middleware between their content and their front-end website. But like all software, and this is without exception, CMSs have many security concerns. Content management systems (CMS) have become far more popular in the past couple of years. But like all software, CMSs have many security concerns. Third-party software like this is out of your control. The popularity of CMSs has been a boon for hackers, giving them a much larger surface area to attack. But, as Barry Shteiman of Imperva explains, there are steps you can take to improve your security when using CMSs.},
+	language = {en},
+	urldate = {2021-02-25},
+	booktitle = {Network {Security}},
+	author = {Shteiman, Barry},
+	month = jan,
+	year = {2014},
+	pages = {7--9},
+}
+
+@inproceedings{yuan_bioinformatics_2020,
+	title = {Bioinformatics {Application} with {Kubeflow} for {Batch} {Processing} in {Clouds}},
+	doi = {10.1007/978-3-030-59851-8_24},
+	abstract = {Bioinformatics pipelines make extensive use of HPC batch processing. The rapid growth of data volumes and computational complexity, especially for modern applications such as machine learning algorithms, imposes significant challenges to local HPC facilities. Many attempts have been made to burst HPC batch processing into clouds with virtual machines. They all suffer from some common issues, for example: very high overhead, slow to scale up and slow to scale down, and nearly impossible to be cloud-agnostic. We have successfully deployed and run several pipelines on Kubernetes in OpenStack, Google Cloud Platform and Amazon Web Services. In particular, we use Kubeflow on top of Kubernetes for more sophisticated job scheduling, workflow management, and first class support for machine learning. We choose Kubeflow/Kubernetes to avoid the overhead of provisioning of virtual machines, to achieve rapid scaling with containers, and to be truly cloud-agnostic in all cloud environments. Kubeflow on Kubernetes also creates some new challenges in deployment, data access, performance monitoring, etc. We will discuss the details of these challenges and provide our solutions. We will demonstrate how our solutions work across all three very different clouds for both classical pipelines and new ones for machine learning.},
+	booktitle = {{ISC} {Workshops}},
+	author = {Yuan, David and Wildish, Tony},
+	year = {2020},
+}
+
+@inproceedings{beltre_enabling_2019,
+	title = {Enabling {HPC} {Workloads} on {Cloud} {Infrastructure} {Using} {Kubernetes} {Container} {Orchestration} {Mechanisms}},
+	doi = {10.1109/CANOPIE-HPC49598.2019.00007},
+	abstract = {Containers offer a broad array of benefits, including a consistent lightweight runtime environment through OS-level virtualization, as well as low overhead to maintain and scale applications with high efficiency. Moreover, containers are known to package and deploy applications consistently across varying infrastructures. Container orchestrators manage a large number of containers for microservices based cloud applications. However, the use of such service orchestration frameworks towards HPC workloads remains relatively unexplored. In this paper we study the potential use of Kubernetes on HPC infrastructure for use by the scientific community. We directly compare both its features and performance against Docker Swarm and bare metal execution of HPC applications. Herein, we detail the configurations required for Kubernetes to operate with containerized MPI applications, specifically accounting for operations such as (1) underlying device access, (2) inter-container communication across different hosts, and (3) configuration limitations. This evaluation quantifies the performance difference between representative MPI workloads running both on bare metal and containerized orchestration frameworks with Kubernetes, operating over both Ethernet and InfiniBand interconnects. Our results show that Kubernetes and Docker Swarm can achieve near bare metal performance over RDMA communication when high performance transports are enabled. Our results also show that Kubernetes presents overheads for several HPC applications over TCP/IP protocol. However, Docker Swarm's throughput is near bare metal performance for the same applications.},
+	booktitle = {2019 {IEEE}/{ACM} {International} {Workshop} on {Containers} and {New} {Orchestration} {Paradigms} for {Isolated} {Environments} in {HPC} ({CANOPIE}-{HPC})},
+	author = {Beltre, A. and Saha, P. and Govindaraju, M. and Younge, Andrew and Grant, R.},
+	year = {2019},
+}
+
+@inproceedings{banek_why_2019,
+	title = {Why is the {LSST} {Science} {Platform} built on {Kubernetes}?},
+	url = {http://arxiv.org/abs/1911.06404},
+	abstract = {LSST has chosen Kubernetes as the platform for deploying and operating the LSST Science Platform. We first present the background reasoning behind this decision, including both instrument-agnostic as well as LSST-specific requirements. We then discuss the basic principles of Kubernetes and Helm, and how they are used as the deployment base for the LSST Science Platform. Furthermore, we provide an example of how an external group may use these publicly available software resources to deploy their own instance of the LSST Science Platform, and customize it to their needs. Finally, we discuss how more astronomy software can follow these patterns to gain similar benefits.},
+	urldate = {2021-02-26},
+	booktitle = {{arXiv}:1911.06404 [astro-ph]},
+	author = {Banek, Christine and Thornton, Adam and Economou, Frossie and Fausti, Angelo and Krughoff, K. Simon and Sick, Jonathan},
+	month = nov,
+	year = {2019},
+	note = {arXiv: 1911.06404},
+	keywords = {Astrophysics - Instrumentation and Methods for Astrophysics},
+}
+
+@inproceedings{hariri_batch_2018,
+	title = {Batch and online anomaly detection for scientific applications in a {Kubernetes} environment},
+	doi = {10.1145/3217880.3217883},
+	abstract = {We present a cloud based anomaly detection service framework that uses a containerized Spark cluster and ancillary user interfaces all managed by Kubernetes. The stack of technology put together allows for fast, reliable, resilient and easily scalable service for either batch or streaming data. At the heart of the service, we utilize an improved version of the algorithm Isolation Forest called Extended Isolation Forest for robust and efficient anomaly detection. We showcase the design and a normal workflow of our infrastructure which is ready to deploy on any Kubernetes cluster without extra technical knowledge. With exposed APIs and simple graphical interfaces, users can load any data and detect anomalies on the loaded set or on newly presented data points using a batch or a streaming mode. With the latter, users can subscribe and get notifications on the desired output. Our aim is to develop and apply these techniques to use with scientific data. In particular we are interested in finding anomalous objects within the overwhelming set of images and catalogs produced by current and future astronomical surveys, but that can be easily adopted to other fields.},
+	booktitle = {{ScienceCloud}@{HPDC}},
+	author = {Hariri, S. and Kind, M. C.},
+	year = {2018},
+}
+
+@inproceedings{csontos_accessibility_2020,
+	title = {Accessibility, usability, and security evaluation of {Hungarian} government websites},
+	url = {https://doi.org/10.1007/s10209-020-00716-9},
+	doi = {10.1007/s10209-020-00716-9},
+	abstract = {Public sector bodies are increasingly relying on the Internet. On this channel, indispensable information is transmitted to the public and a wide range of services is already available. Therefore, the usability, accessibility, and the security of these websites are very important. Accessibility is particularly crucial for persons with disabilities. The accessibility of public service websites is regulated by a number of laws; among others, the directive “on the accessibility of the websites and mobile applications of public sector bodies” adopted by the European Parliament in 2016. This obliges all European Union member states to make all public sector websites and mobile applications accessible by 23 September 2021. In practice, this means that websites must fulfil the level AA recommendations in WCAG 2.1. In our study, a website assessment method is developed by comparing different analytical tools. With this method, we analysed how Hungarian websites of public sector bodies fulfil the requirements of the directive. We have also investigated how well they comply with usability and security guidelines. The results showed that none of the 25 websites of the examined Hungarian public sector bodies could completely fulfil the recommendations of the Web Content Accessibility Guidelines (WCAG) and that half of the websites had only the lowest level of compliance in usability tests. From the security point of view, almost half of the websites use outdated server versions and programming language, which is very critical. We have proposed several suggestions to address the major problems, so website developers and administrators can improve the accessibility, usability, and security aspects of these websites.},
+	language = {en},
+	urldate = {2021-02-25},
+	booktitle = {Universal {Access} in the {Information} {Society}},
+	author = {Csontos, Balázs and Heckl, István},
+	month = apr,
+	year = {2020},
+}
+
+@inproceedings{fairbanks_ur-technical_2020,
+	title = {Ur-{Technical} {Debt}},
+	abstract = {These days, everyone uses the term technical debt. It's so prevalent that we shorten it to tech debt tech debt or even just TD. Tech debt is also hacky code, code written by novices, code written without consideration of software architecture (so-called big balls of mud), and code with antipatterns flagged by static analysis tools.},
+	booktitle = {{IEEE} {Software}},
+	author = {Fairbanks, G.},
+	month = jul,
+	year = {2020},
+	note = {Conference Name: IEEE Software},
+	keywords = {Codes, Computer architecture, Software engineering, hacky code, program diagnostics, source code (software), static analysis tools, tech debt, technical debt},
+}
+
+@inproceedings{henderson_software_2020,
+	title = {Software {Engineering} at {Google}},
+	url = {http://arxiv.org/abs/1702.01715},
+	abstract = {We catalog and describe Google's key software engineering practices.},
+	urldate = {2021-02-25},
+	booktitle = {{arXiv}:1702.01715 [cs]},
+	author = {Henderson, Fergus},
+	month = jan,
+	year = {2020},
+	note = {arXiv: 1702.01715},
+	keywords = {Computer Science - Software Engineering, D.2},
+}
+
+@inproceedings{kaviani_towards_2019,
+	title = {Towards {Serverless} as {Commodity}: a case of {Knative}},
+	shorttitle = {Towards {Serverless} as {Commodity}},
+	doi = {10.1145/3366623.3368135},
+	abstract = {Serverless computing promises to evolve cloud computing architecture from VMs and containers-as-a-service (CaaS) to function-as-a-service (FaaS). This takes away complexities of managing and scaling underlying infrastructure and can result in simpler code, cheaper realization of services, and higher availability. Nonetheless, one of the primary drawbacks customers face when making decision to move their software to a serverless platform is the potential for getting locked-in with a particular provider. This used to be a concern with Platform-as-a-Service (PaaS) offerings too. However with Kubernetes emerging as the industry standard PaaS layer, PaaS is closer to becoming commodity with the Kubernetes API as its common interface. The question is if a similar unification for the API interface layer and runtime contracts can be achieved for serverless. If achieved, this would free up serverless users from their fears of platform lock-in. Our goal in this paper is to extract a minimal common denominator model of execution that can move us closer to a unified serverless platform. As contributors to Knative [13] with in-depth understanding of its internal design, we use Knative as the baseline for this comparison and contrast its API interface and runtime contracts against other prominent serverless platforms to identify commonalities and differences. Influenced by the work in Knative, we also discuss challenges as well as the necessary evolution we expect to see as serverless platforms themselves reach commodity status.},
+	booktitle = {{WOSC}@{Middleware}},
+	author = {Kaviani, N. and Kalinin, D. and Maximilien, E.},
+	year = {2019},
+}
+
+@misc{noauthor_drupal_nodate,
+	title = {Drupal {Multisite}: {Much} {Ado} {About} {Drupal} {Multisite} {\textbar} {Pantheon}},
+	url = {https://pantheon.io/blog/drupal-multisite-much-ado-about-drupal-multisite},
+	urldate = {2021-02-27},
+}
+
 @misc{jarvinen_extending_2019,
 	title = {Extending {Kubernetes} with the {Operator} {Pattern}},
 	url = {/paper/Extending-Kubernetes-with-the-Operator-Pattern-Jarvinen/9358b05fbf487b6bfb36fa978522d52ea01d7218},
@@ -18,15 +126,6 @@
 	year = {2020},
 }
 
-@article{hariri_batch_2018,
-	title = {Batch and online anomaly detection for scientific applications in a {Kubernetes} environment},
-	doi = {10.1145/3217880.3217883},
-	abstract = {We present a cloud based anomaly detection service framework that uses a containerized Spark cluster and ancillary user interfaces all managed by Kubernetes. The stack of technology put together allows for fast, reliable, resilient and easily scalable service for either batch or streaming data. At the heart of the service, we utilize an improved version of the algorithm Isolation Forest called Extended Isolation Forest for robust and efficient anomaly detection. We showcase the design and a normal workflow of our infrastructure which is ready to deploy on any Kubernetes cluster without extra technical knowledge. With exposed APIs and simple graphical interfaces, users can load any data and detect anomalies on the loaded set or on newly presented data points using a batch or a streaming mode. With the latter, users can subscribe and get notifications on the desired output. Our aim is to develop and apply these techniques to use with scientific data. In particular we are interested in finding anomalous objects within the overwhelming set of images and catalogs produced by current and future astronomical surveys, but that can be easily adopted to other fields.},
-	journal = {ScienceCloud@HPDC},
-	author = {Hariri, S. and Kind, M. C.},
-	year = {2018},
-}
-
 @misc{hightower_kubernetes_2017,
 	title = {Kubernetes: {Up} and {Running}: {Dive} into the {Future} of {Infrastructure}},
 	shorttitle = {Kubernetes},
@@ -39,31 +138,12 @@
 	year = {2017},
 }
 
-@article{beltre_enabling_2019,
-	title = {Enabling {HPC} {Workloads} on {Cloud} {Infrastructure} {Using} {Kubernetes} {Container} {Orchestration} {Mechanisms}},
-	doi = {10.1109/CANOPIE-HPC49598.2019.00007},
-	abstract = {Containers offer a broad array of benefits, including a consistent lightweight runtime environment through OS-level virtualization, as well as low overhead to maintain and scale applications with high efficiency. Moreover, containers are known to package and deploy applications consistently across varying infrastructures. Container orchestrators manage a large number of containers for microservices based cloud applications. However, the use of such service orchestration frameworks towards HPC workloads remains relatively unexplored. In this paper we study the potential use of Kubernetes on HPC infrastructure for use by the scientific community. We directly compare both its features and performance against Docker Swarm and bare metal execution of HPC applications. Herein, we detail the configurations required for Kubernetes to operate with containerized MPI applications, specifically accounting for operations such as (1) underlying device access, (2) inter-container communication across different hosts, and (3) configuration limitations. This evaluation quantifies the performance difference between representative MPI workloads running both on bare metal and containerized orchestration frameworks with Kubernetes, operating over both Ethernet and InfiniBand interconnects. Our results show that Kubernetes and Docker Swarm can achieve near bare metal performance over RDMA communication when high performance transports are enabled. Our results also show that Kubernetes presents overheads for several HPC applications over TCP/IP protocol. However, Docker Swarm's throughput is near bare metal performance for the same applications.},
-	journal = {2019 IEEE/ACM International Workshop on Containers and New Orchestration Paradigms for Isolated Environments in HPC (CANOPIE-HPC)},
-	author = {Beltre, A. and Saha, P. and Govindaraju, M. and Younge, Andrew and Grant, R.},
-	year = {2019},
-}
-
 @inproceedings{megino_using_2020,
 	title = {Using {Kubernetes} as an {ATLAS} computing site},
 	doi = {10.1051/epjconf/202024507025},
 	abstract = {In recent years containerization has revolutionized cloud environments, providing a secure, lightweight, standardized way to package and execute software. Solutions such as Kubernetes enable orchestration of containers in a cluster, including for the purpose of job scheduling. Kubernetes is becoming a de facto standard, available at all major cloud computing providers, and is gaining increased attention from some WLCG sites. In particular, CERN IT has integrated Kubernetes into their cloud infrastructure by providing an interface to instantly create Kubernetes clusters, and the University of Victoria is pursuing an infrastructure-as-code approach to deploying Kubernetes as a flexible and resilient platform for running services and delivering resources.The ATLAS experiment at the LHC has partnered with CERN IT and the University of Victoria to explore and demonstrate the feasibility of running an ATLAS computing site directly on Kubernetes, replacing all grid computing services. We have interfaced ATLAS’ workload submission engine PanDA with Kubernetes, to directly submit and monitor the status of containerized jobs. We describe the integration and deployment details, and focus on the lessons learned from running a wide variety of ATLAS production payloads on Kubernetes using clusters of several thousand cores at CERN and the Tier 2 computing site in Victoria.},
 	author = {Megino, F. B. and Donell, D. M. M. and Seuster, R. and Taylor, R. P. and Berghaus, F. and Maeno, T. and Albert, J. and De, K. and Lin, F. and Rocha, R. B. D. and Yang, Ming-Jyuan},
 	year = {2020},
-}
-
-@article{kaviani_towards_2019,
-	title = {Towards {Serverless} as {Commodity}: a case of {Knative}},
-	shorttitle = {Towards {Serverless} as {Commodity}},
-	doi = {10.1145/3366623.3368135},
-	abstract = {Serverless computing promises to evolve cloud computing architecture from VMs and containers-as-a-service (CaaS) to function-as-a-service (FaaS). This takes away complexities of managing and scaling underlying infrastructure and can result in simpler code, cheaper realization of services, and higher availability. Nonetheless, one of the primary drawbacks customers face when making decision to move their software to a serverless platform is the potential for getting locked-in with a particular provider. This used to be a concern with Platform-as-a-Service (PaaS) offerings too. However with Kubernetes emerging as the industry standard PaaS layer, PaaS is closer to becoming commodity with the Kubernetes API as its common interface. The question is if a similar unification for the API interface layer and runtime contracts can be achieved for serverless. If achieved, this would free up serverless users from their fears of platform lock-in. Our goal in this paper is to extract a minimal common denominator model of execution that can move us closer to a unified serverless platform. As contributors to Knative [13] with in-depth understanding of its internal design, we use Knative as the baseline for this comparison and contrast its API interface and runtime contracts against other prominent serverless platforms to identify commonalities and differences. Influenced by the work in Knative, we also discuss challenges as well as the necessary evolution we expect to see as serverless platforms themselves reach commodity status.},
-	journal = {WOSC@Middleware},
-	author = {Kaviani, N. and Kalinin, D. and Maximilien, E.},
-	year = {2019},
 }
 
 @article{shaw_germinate_2017,
@@ -84,15 +164,6 @@
 	year = {2019},
 }
 
-@article{yuan_bioinformatics_2020,
-	title = {Bioinformatics {Application} with {Kubeflow} for {Batch} {Processing} in {Clouds}},
-	doi = {10.1007/978-3-030-59851-8_24},
-	abstract = {Bioinformatics pipelines make extensive use of HPC batch processing. The rapid growth of data volumes and computational complexity, especially for modern applications such as machine learning algorithms, imposes significant challenges to local HPC facilities. Many attempts have been made to burst HPC batch processing into clouds with virtual machines. They all suffer from some common issues, for example: very high overhead, slow to scale up and slow to scale down, and nearly impossible to be cloud-agnostic. We have successfully deployed and run several pipelines on Kubernetes in OpenStack, Google Cloud Platform and Amazon Web Services. In particular, we use Kubeflow on top of Kubernetes for more sophisticated job scheduling, workflow management, and first class support for machine learning. We choose Kubeflow/Kubernetes to avoid the overhead of provisioning of virtual machines, to achieve rapid scaling with containers, and to be truly cloud-agnostic in all cloud environments. Kubeflow on Kubernetes also creates some new challenges in deployment, data access, performance monitoring, etc. We will discuss the details of these challenges and provide our solutions. We will demonstrate how our solutions work across all three very different clouds for both classical pipelines and new ones for machine learning.},
-	journal = {ISC Workshops},
-	author = {Yuan, David and Wildish, Tony},
-	year = {2020},
-}
-
 @inproceedings{simko_reana_2019,
 	title = {{REANA}: {A} {System} for {Reusable} {Research} {Data} {Analyses}},
 	shorttitle = {{REANA}},
@@ -100,35 +171,6 @@
 	abstract = {The revalidation, reinterpretation and reuse of research data analyses requires having access to the original computing environment, the experimental datasets, the analysis software, and the computational workflow steps which were used by researchers to produce the original scientific results in the first place.REANA (Reusable Analyses) is a nascent platform enabling researchers to structure their research data analyses in view of enabling future reuse. The analysis is described by means of a YAML file that captures sufficient information about the analysis assets, parameters and processes. The REANA platform consists of a set of micro-services allowing to launch and monitor container-based computational workflow jobs on the cloud. The REANA user interface and the command-line client enables researchers to easily rerun analysis workflows with new input parameters. The REANA platform aims at supporting several container technologies (Docker), workflow engines (CWL, Yadage), shared storage systems (Ceph, EOS) and compute cloud infrastructures (Ku-bernetes/OpenStack, HTCondor) used by the community.REANA was developed with the particle physics use case in mind and profits from synergies with general reusable research data analysis patterns in other scientific disciplines, such as bioinformatics and life sciences.},
 	author = {Simko, T. and Heinrich, L. and Hirvonsalo, Harri and Kousidis, Dinos and Rodriguez, D.},
 	year = {2019},
-}
-
-@article{banek_why_2019,
-	title = {Why is the {LSST} {Science} {Platform} built on {Kubernetes}?},
-	url = {http://arxiv.org/abs/1911.06404},
-	abstract = {LSST has chosen Kubernetes as the platform for deploying and operating the LSST Science Platform. We first present the background reasoning behind this decision, including both instrument-agnostic as well as LSST-specific requirements. We then discuss the basic principles of Kubernetes and Helm, and how they are used as the deployment base for the LSST Science Platform. Furthermore, we provide an example of how an external group may use these publicly available software resources to deploy their own instance of the LSST Science Platform, and customize it to their needs. Finally, we discuss how more astronomy software can follow these patterns to gain similar benefits.},
-	urldate = {2021-02-26},
-	journal = {arXiv:1911.06404 [astro-ph]},
-	author = {Banek, Christine and Thornton, Adam and Economou, Frossie and Fausti, Angelo and Krughoff, K. Simon and Sick, Jonathan},
-	month = nov,
-	year = {2019},
-	note = {arXiv: 1911.06404},
-	keywords = {Astrophysics - Instrumentation and Methods for Astrophysics},
-}
-
-@article{fairbanks_ur-technical_2020,
-	title = {Ur-{Technical} {Debt}},
-	volume = {37},
-	issn = {1937-4194},
-	doi = {10.1109/MS.2020.2986613},
-	abstract = {These days, everyone uses the term technical debt. It's so prevalent that we shorten it to tech debt tech debt or even just TD. Tech debt is also hacky code, code written by novices, code written without consideration of software architecture (so-called big balls of mud), and code with antipatterns flagged by static analysis tools.},
-	number = {4},
-	journal = {IEEE Software},
-	author = {Fairbanks, G.},
-	month = jul,
-	year = {2020},
-	note = {Conference Name: IEEE Software},
-	keywords = {Codes, Computer architecture, Software engineering, hacky code, program diagnostics, source code (software), static analysis tools, tech debt, technical debt},
-	pages = {95--98},
 }
 
 @misc{etheredge_software_2018,
@@ -141,50 +183,6 @@
 	author = {Etheredge, Justin},
 	month = jan,
 	year = {2018},
-}
-
-@article{henderson_software_2020,
-	title = {Software {Engineering} at {Google}},
-	url = {http://arxiv.org/abs/1702.01715},
-	abstract = {We catalog and describe Google's key software engineering practices.},
-	urldate = {2021-02-25},
-	journal = {arXiv:1702.01715 [cs]},
-	author = {Henderson, Fergus},
-	month = jan,
-	year = {2020},
-	note = {arXiv: 1702.01715},
-	keywords = {Computer Science - Software Engineering, D.2},
-}
-
-@article{csontos_accessibility_2020,
-	title = {Accessibility, usability, and security evaluation of {Hungarian} government websites},
-	issn = {1615-5297},
-	url = {https://doi.org/10.1007/s10209-020-00716-9},
-	doi = {10.1007/s10209-020-00716-9},
-	abstract = {Public sector bodies are increasingly relying on the Internet. On this channel, indispensable information is transmitted to the public and a wide range of services is already available. Therefore, the usability, accessibility, and the security of these websites are very important. Accessibility is particularly crucial for persons with disabilities. The accessibility of public service websites is regulated by a number of laws; among others, the directive “on the accessibility of the websites and mobile applications of public sector bodies” adopted by the European Parliament in 2016. This obliges all European Union member states to make all public sector websites and mobile applications accessible by 23 September 2021. In practice, this means that websites must fulfil the level AA recommendations in WCAG 2.1. In our study, a website assessment method is developed by comparing different analytical tools. With this method, we analysed how Hungarian websites of public sector bodies fulfil the requirements of the directive. We have also investigated how well they comply with usability and security guidelines. The results showed that none of the 25 websites of the examined Hungarian public sector bodies could completely fulfil the recommendations of the Web Content Accessibility Guidelines (WCAG) and that half of the websites had only the lowest level of compliance in usability tests. From the security point of view, almost half of the websites use outdated server versions and programming language, which is very critical. We have proposed several suggestions to address the major problems, so website developers and administrators can improve the accessibility, usability, and security aspects of these websites.},
-	language = {en},
-	urldate = {2021-02-25},
-	journal = {Universal Access in the Information Society},
-	author = {Csontos, Balázs and Heckl, István},
-	month = apr,
-	year = {2020},
-}
-
-@article{shteiman_why_2014,
-	title = {Why {CMS} platforms are breeding security vulnerabilities},
-	volume = {2014},
-	issn = {1353-4858},
-	url = {https://www.sciencedirect.com/science/article/pii/S1353485814700066},
-	doi = {10.1016/S1353-4858(14)70006-6},
-	abstract = {Several statistics-gathering engines on the web reveal an interesting picture. Content management systems (CMS) have become far more popular in the past couple of years. A trend graph over at builtwith.com shows that over 20\% of the top 10,000 websites rely on CMS.1 And it's fair to assume that the number is higher for companies that use a CMS as a middleware between their content and their front-end website. But like all software, and this is without exception, CMSs have many security concerns. Content management systems (CMS) have become far more popular in the past couple of years. But like all software, CMSs have many security concerns. Third-party software like this is out of your control. The popularity of CMSs has been a boon for hackers, giving them a much larger surface area to attack. But, as Barry Shteiman of Imperva explains, there are steps you can take to improve your security when using CMSs.},
-	language = {en},
-	number = {1},
-	urldate = {2021-02-25},
-	journal = {Network Security},
-	author = {Shteiman, Barry},
-	month = jan,
-	year = {2014},
-	pages = {7--9},
 }
 
 @book{cern_geneva_real_2019,
@@ -344,7 +342,7 @@
 	urldate = {2019-08-28},
 }
 
-@misc{noauthor_drupal_nodate,
+@misc{noauthor_drupal_nodate-1,
 	title = {A {Drupal} {Operator} for {Kubernetes} with the {Ansible} {Operator} {SDK} {\textbar} {Jeff} {Geerling}},
 	url = {https://www.jeffgeerling.com/blog/2019/drupal-operator-kubernetes-ansible-operator-sdk},
 	urldate = {2019-08-28},

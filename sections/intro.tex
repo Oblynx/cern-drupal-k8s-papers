@@ -21,9 +21,9 @@ and making the service more secure and flexible (see section \ref{sec-web-framew
 \subsection{Why Kubernetes?}
 
 Kubernetes is for cloud native applications an extension of what the operating system is for traditional applications.
-It is becoming a de facto standard for Platform as a Service \cite{kaviani_towards_2019}, abstracting computational infrastructure and standardizing deployment,
+It is becoming the de facto standard for Platform as a Service \cite{kaviani_towards_2019}, abstracting computational infrastructure and standardizing deployment,
 so that an application can run unmodified on sites across the globe.
-Scientific applications are routinely deployed on Kubernetes, such as \cite{banek_why_2019}, \cite{hariri_batch_2018}, \cite{yuan_bioinformatics_2020},
+Scientific applications are routinely deployed on Kubernetes \cite{banek_why_2019, hariri_batch_2018, yuan_bioinformatics_2020},
 and even HPC use cases are being investigated \cite{beltre_enabling_2019}.
 
 At CERN the uptake is also evident.
@@ -45,7 +45,7 @@ we extend Kubernetes with custom APIs and controllers, building infrastructure m
 Our applications range from integrating with other CERN systems to providing website management APIs and automating operations.
 
 But what is included in the task of managing websites?
-The infrastructure, seen as an application, needs to have a concept of a website and let users define the website they need: its name, the technology, parameters etc.
+The infrastructure, seen as an application, needs to have a concept of a website and let users define the website they need: its name, the technology, parameters, etc.
 Once a website is specified, the infrastructure needs to ensure that the website is automatically provisioned and set up.
 More than just a server, this task might include setting up storage and database, and integration with external CERN systems.
 After that, it needs to ensure that every component stays healthy and synchronized, propagating changes as requested by the user to every part.
@@ -56,7 +56,7 @@ This pattern is called \emph{Operator}, because it uses Kubernetes primitives to
 \subsection{What is Drupal?}
 \label{what-is-drupal}
 
-Drupal is an open-source content management system (CMS): a tool for site builders to organize and deliver content to their website visitors.
+Drupal is an open-source \emph{Content Management System} (CMS): a tool for site builders to organize and deliver content to their website visitors.
 It's used in 10\% of the top-10k websites with the highest traffic \cite{builtwith_pty_ltd_open_nodate,q-success_di_gelbmann_gmbh_wordpress_nodate}.
 
 The market leader in Drupal's niche is the CMS WordPress \cite{builtwith_pty_ltd_open_nodate}.

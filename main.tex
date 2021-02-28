@@ -26,12 +26,21 @@
 \usepackage{tabularx}
 \usepackage{svg}
 \usepackage{natbib}
+\usepackage{caption}
+\captionsetup[figure]{font=small}
+\usepackage{subcaption}
+\usepackage{xcolor}
+
 \definecolor{amethyst}{rgb}{0.6, 0.4, 0.8}
 \definecolor{asparagus}{rgb}{0.53, 0.66, 0.42}
 \definecolor{darkseagreen}{rgb}{0.56, 0.74, 0.56}
 \definecolor{carolinablue}{rgb}{0.6, 0.73, 0.89}
 \definecolor{beige}{rgb}{0.80, 0.78, 0.63}
 \definecolor{fluorescentorange}{rgb}{.90, 0.65, 0.0}
+
+\newenvironment{conditions}
+  {\par\vspace{\abovedisplayskip}\noindent\begin{tabular}{>{$}l<{$} @{${}={}$} l}}
+  {\end{tabular}\par\vspace{\belowdisplayskip}}
 
 \begin{document}
 %\title{CERN's 1000 Drupal Websites Move to Kubernetes}
@@ -60,11 +69,10 @@ to get observability, policy enforcement, access control and auditing, and high 
 Thanks to containers and namespaces, websites are isolated.
 This isolation clarifies security boundaries and minimizes attack surface, while empowering site owners.
 
-% Explain better that the "operational insights" aren't here yet, but will be at the conference
 In this work we present the open-source design of the new system and contrast it with the one it replaces, demonstrating how we drastically reduced our technical debt.
-As the project enters its pilot phase, at CHEP 2021 we will also share operational insights.
 }
 %
+\vspace{-3em}
 \maketitle
 %
 \section{Introduction}
@@ -88,7 +96,7 @@ As the project enters its pilot phase, at CHEP 2021 we will also share operation
 \label{sec-experiment}
 \input{sections/experiment}
 
-\section{Discussion}
+\section{Reflections}
 \label{sec-discussion}
 \input{sections/discussion}
 
@@ -97,6 +105,7 @@ As the project enters its pilot phase, at CHEP 2021 we will also share operation
 This work relies upon the contributions of all members of the Web Frameworks section in the CDA group of CERN's IT department,
 especially those that designed and implemented the common components.
 We thank specifically Alex Lossent, Ismael Posada Trobo, Joao Esteves Marcal, Iago Santos Pardo, Aleksandra Wardzinska, Michal Kolodziejski and Emmanouil Fokas.
+
 
 \bibliography{references.bib}
 \end{document}

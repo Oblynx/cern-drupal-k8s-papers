@@ -1,23 +1,45 @@
-\newenvironment{conditions}
-  {\par\vspace{\abovedisplayskip}\noindent\begin{tabular}{>{$}l<{$} @{${}={}$} l}}
-  {\end{tabular}\par\vspace{\belowdisplayskip}}
+The Kubernetes infrastructure can easily adjust its size according to the expected load.
+Each workload is also adaptable to load peaks with the \href{https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/}{Horizontal Pod Autoscaler}
+(although so far we have not found it necessary).
+Nevertheless, we performed an experiment to measure the expected baseline resource consumption
+\footnote{The resources required to satisfy each website's Quality of Service requirements}
+and compare against the physical infrastructure, which was massively over-provisioned.
 
-In order to deploy the new infrastructure, we first need an estimation of resources that Kubernetes will need in order to handle the same load as the physical infrastructure.
-To make this estimation, we have stress tested each Quality of Service (QoS) and monitored the resources consumption. 
+We need a resource estimate to size the Kubernetes infrastructure so that it can handle the same baseline load as the physical infrastructure.
+To understand the baseline load and the resources needed to handle it, we define Quality of Service (QoS) classes based on required throughput
+that needs to be handled with a stable response latency.
+We perform a stress test to emulate the throughput and define the appropriate baseline resources.
 
-\subsection{Service level indicators}
+\subsection{Service level objectives}
 
-In order to be able to answer each Quality of Service (QoS) differently, we have specified some metrics to help resource optimization without ignoring performance.
-The defined metric that will be discussed here and will vary among each QoS is the capability of answering requests per second.
+\begin{figure}[t]
+\centering
+\captionsetup{justification=centering,margin=0.3cm}
+\vspace{-2em}
+\includegraphics[width=1.1\linewidth]{figures/experiment-figures/critical_run.png}
+\caption{\emph{Stress test for the Critical QoS}.
+The right Y-axis shows the load for {\color[HTML]{F66565} \texttt{nurseryschool}} and {\color[HTML]{5D8AA8} \texttt{fluka}}.
+The left Y-axis shows the response time (average over simultaneous requests) for {\color[HTML]{D23232} \texttt{nurseryschool}} and {\color[HTML]{0000FF} \texttt{fluka}}.}
+\label{stress_usage}
+\vspace{-2em}
+\end{figure}
 
-Using the physical infra as starting point (fig. \ref{fig:website_bandwidth}), we can observe the requests per second peaked on the most popular website, with around 16000 requests in an hour which averages on 4.4 requests per second.
-We, therefore, have defined that there are three type of websites that translates into three types of Quality of Service:
+To define the load each QoS class needs to handle, we use the physical infrastructure as starting point (fig. \ref{fig:website_bandwidth}).
+Throughput peaked on the most popular website at around 16000 requests per hour, which averages on 4.4 requests per second.
+We define 3 QoS classes, which serve as Service Level Objectives (SLO), against the Service Level Indicator (SLI) of response latency under load.
+Because the latency depends on the complexity of each website, which is in the hands of the website admins and not the infrastructure,
+the SLO is met \emph{not by defining a set value of the SLI, but by asserting that the SLI be stable}
+\footnote{Stability is interpreted as the latency settling to a fixed value after some time with steady load}.
+The 3 QoS classes are:
+
 \begin{itemize}
-    \item \textbf{Critical} websites, these are the most popular and therefore the most important to have high capability of requests, the defined value is to handle 35 requests per second (Around 8 times the average on peak usage).
-    \item \textbf{Standard} websites, these usually don't face as much traffic and therefore don't need to have high capability of requests, the defined value is to handle 10 requests per second. 
-    \item \textbf{Test} websites, as in the name itself, these are used to test new features or add new content by website managers, and therefore are used by testers and developers, these type of websites only need to handle few requests, therefore the defined value is to handle 2 requests per second.
+    \item \textbf{Critical}: the most popular websites and therefore the most important to have high availability and request throughput (see section \ref{sec-load}).
+    They need to handle 35 requests per second (around 8 times the average on peak usage).
+    \item \textbf{Standard}: these websites usually don't handle as much traffic and therefore don't need to have high request throughput
+    They need to handle 10 requests per second. 
+    \item \textbf{Test}: as in the name itself, these websites are used by website managers to test new features, and therefore are used by testers and developers
+    They only need to handle 2 requests per second.
 \end{itemize}
-
 %- entire infra: 250 req/sec
 %- critical website: 35 req/sec
 %- standard website: 5-10 req/sec % TODO set final value
@@ -37,94 +59,113 @@ We, therefore, have defined that there are three type of websites that translate
 % - Memory: 2TB
 % - CPU: 512
 
-\subsection{Stress test setup}
+\subsection{Stress test}
 
-% (we have provioned websites and migrated data from the old infra)
-To have a proper setup to test, we have migrated some websites with diversified content to the new infrastructure to observe how websites already hosted under the Physical infra perform on the Kubernetes infrastructure.
+\begin{wraptable}{r}{.53\textwidth}
+    \centering
+    \begin{subtable}{0.5\textwidth}
+        \begin{tabular}{|l|ll|ll}
+        \cline{1-3}
+        \textbf{website} & \multicolumn{1}{l|}{\textbf{Stress (req/s)}} & \textbf{Response (ms)} &  &  \\ \cline{1-3}
+        nurseryschool    & 10                                           & 510                    &  &  \\ \cline{1-1}
+        fluka            & 26                                           & 570                    &  &  \\ \cline{1-3}
+        \end{tabular}
+    \caption{Test}
+    \end{subtable}
+    \begin{subtable}{0.5\textwidth}
+        \begin{tabular}{|l|ll|ll}
+        \cline{1-3}
+        \textbf{website} & \multicolumn{1}{l|}{\textbf{Stress (req/s)}} & \textbf{Response (ms)} &  &  \\ \cline{1-3}
+        nurseryschool    & 18                                           & 240                    &  &  \\ \cline{1-1}
+        fluka            & 48                                           & 103                    &  &  \\ \cline{1-3}
+        \end{tabular}
+    \caption{Standard}
+    \end{subtable}
+    \begin{subtable}{0.5\textwidth}
+        \begin{tabular}{|l|ll|ll}
+        \cline{1-3}
+        \textbf{website} & \multicolumn{1}{l|}{\textbf{Stress (req/s)}} & \textbf{Response (ms)} &  &  \\ \cline{1-3}
+        nurseryschool    & 41  & 870   &  &  \\ \cline{1-1}
+        fluka            & 74  & 600   &  &  \\ \cline{1-3}
+        \end{tabular}
+    \caption{Critical}
+    \end{subtable}
+    \vspace{-1.5em}
+    \caption{\emph{Stress test values for each QoS class}: max response latency and minimum load throughput.}
+    \vspace{-2.2em}
+    \label{tab:stress-response}
+\end{wraptable}
 
-%To evaluate the behavior of our Kubernetes infrastructure, with the goal of analysing the new infrastructure's capability of answering the same needs with fewer resources, the following experiment was conducted.
+The stress test consists of multiple simulated clients requesting URLs on the same website over a period of time.
+We copied a few websites (\href{https://nurseryschool.web.cern.ch/}{nursery} and \href{https://fluka.cern/}{fluka} used as examples) with varying content complexity from the physical infrastructure to experiment with on the Kubernetes infrastructure.
+The websites are stressed with load appropriate for the QoS class under investigation, and we tweak their configuration (mainly number of PHP workers),
+to get the lowest possible values for reasonable and stable response times.
 
-%The following elements were required, 
+The simulated clients live on a dedicated Kubernetes cluster that deploys a custom tool based on \hyperlink{locust.io}{Locust} to make multiple requests to the targeted website on the new infrastructure. 
+We spread the clients across multiple pods, each containing multiple processes that simulate users by requesting URLs at random
+\footnote{First a URL discovery crawling of the website is performed, and only after having all the URLs, it picks URLs at random for the duration of the test}.
 
-The experiment has a dedicated Kubernetes cluster that deploys a custom tool based on \hyperlink{locust.io}{Locust} to make multiple requests to the targeted website on the new infrastructure. 
-The simulation of requests is done by running multiple \hyperlink{https://kubernetes.io/docs/concepts/workloads/pods/}{Pods}, each containing multiple processes that will request URLs at random\footnote{It iterates urls through the website to discover all the URLs, and only after having all the URLs, it connects to one of them at random}.
+\subsubsection*{Stress load}
 
-\subsubsection{Stress load}
-Multiple runs have been made with different configurations in order to find a suitable one for each QoS to process the desired requests per second with minimal resource consumption.
+Multiple runs have been made with different configurations in order to find a suitable one for each QoS class to process the desired throughput with minimal resource consumption.
 
-We observed that after a number of parallel users in the same pod, the users would get bottle-necked by Pod network constraints. So for our tests we observer that each Pod could have no more than 5 processes before network constraints would interfere.
+The throughput is affected by the load times on the website, meaning, a website with less content will take less time to handle a request and thefore the User will be able to do a new request faster than it would take on a website with more content.
 
 %Important notes:
 %- RAM consumption before first connection is ~11MiB, 500 to 600MiB after (even if no accesses are being done)
 %- Time used for a stress run was decided to be 6min because it's enough to see the stabilized response time
 
-\subsubsection{Measurements}
+\subsubsection*{Measurements}
+\label{sec:measurements}
 
-The following graph shows the average response time from the client's side as well the requests per second handled from the server side at the same time. 
+Figure \ref{stress_usage} shows the load and the response during stress test for the evaluated websites.
+The stress tests ramp up during the first minute, after which they maintain the stress load for 9 more minutes.
+10 minutes were sufficient for the response time to settle.
 
-The stress tests do a ramp up during the first minute, after which they maintain the stress load for more 9 minutes.
-Thus, the total duration for each run is 10minutes, this value was considered enough to present the trend that would follow in a bigger time frame.
+The resource consumption was also monitored under load.
+The memory usage for nursery and fluka respectively can be seen in figure \ref{fig:memory}.
+Tables \ref{tab:stress-response} show the highest response time under full stress and lowest requests per second for each QoS.
+Table \ref{table_of_resources} summarizes the test results in terms of resources needed by each QoS class under load.
 
-\includegraphics[width=400]{figures/experiment-figures/critical_run.png}
+\begin{figure}[t]
+    \centering
+    \begin{subfigure}{0.47\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{figures/experiment-figures/nursery_memory_usage.jpg}
+    \captionof{figure}{nurseryschool}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.47\linewidth}
+    \includegraphics[width=\linewidth]{figures/experiment-figures/fluka_memory_usage.jpg}
+    \captionof{figure}{fluka}
+    \end{subfigure}
+    \vspace{-1.5em}
+    \caption{Memory use}
+    \vspace{-1.5em}
+    \label{fig:memory}
+\end{figure}
 
-During this run, the resources consumption was also monitored, here we can see the usage for `nursery` and `fluka` websites respectively:
+\begin{wraptable}{r}{.5\textwidth}
+    \centering
+    \begin{tabular}{|l|ll|ll}
+    \cline{1-3}
+    \textbf{QoS} & \multicolumn{1}{l|}{\textbf{CPU}} & \textbf{RAM(MiB)} &  &  \\ \cline{1-3}
+    test         & 0.3                                & 104               &  &  \\ \cline{1-1}
+    standard     & 2.3                                & 257               &  &  \\ \cline{1-1}
+    critical     & 3  & 800               &  &  \\ \cline{1-3}
+    \end{tabular}
+    \caption{\emph{Peak resource consumption per QoS during stress tests}}
+    \label{table_of_resources}
+    \vspace{-2em}
+\end{wraptable}
 
-\includegraphics[width=\linewidth/2]{figures/experiment-figures/nursery_memory_usage.jpg}
-\includegraphics[width=\linewidth/2]{figures/experiment-figures/fluka_memory_usage.jpg}
+\subsection{Optimized resource allocation vs. physical infrastructure}
 
-The same experiment was conducted to the same websites with configurations based on the other QoS. 
-The following tables show the highest response time under full stress and lowest requests per second for each QoS.
+Based on the results in section \ref{sec:measurements}, we can see that response time may vary between QoS but remain under acceptable values.
+We can now estimate the baseline resources for the new infrastructure.
+The Expected Load is the maximum load registered during the tests plus 20\% overhead.
 
-\begin{table}[!htb]
-\centering
-
-\begin{tabular}{|l|ll|ll}
-\cline{1-3}
-\textbf{website} & \multicolumn{1}{l|}{\textbf{Stress (req/s)}} & \textbf{Response (ms)} &  &  \\ \cline{1-3}
-nurseryschool    & 10                                           & 510                    &  &  \\ \cline{1-1}
-fluka            & 26                                           & 570                    &  &  \\ \cline{1-3}
-\end{tabular}
-\caption{Test QoS Values}
-
-
-\begin{tabular}{|l|ll|ll}
-\cline{1-3}
-\textbf{website} & \multicolumn{1}{l|}{\textbf{Stress (req/s)}} & \textbf{Response (ms)} &  &  \\ \cline{1-3}
-nurseryschool    & 18                                           & 240                    &  &  \\ \cline{1-1}
-fluka            & 48                                           & 103                    &  &  \\ \cline{1-3}
-\end{tabular}
-\hfill
-\caption{Standard QoS values}
-\begin{tabular}{|l|ll|ll}
-\cline{1-3}
-\textbf{website} & \multicolumn{1}{l|}{\textbf{Stress (req/s)}} & \textbf{Response (ms)} &  &  \\ \cline{1-3}
-nurseryschool    & 41  & 870   &  &  \\ \cline{1-1}
-fluka            & 74  & 600   &  &  \\ \cline{1-3}
-\end{tabular}
-\caption{Critical QoS values}
-\end{table}
-
-
-%Table \ref{tabel_of_resources}
-\begin{table}[]
-\centering
-\label{tabel_of_resources}
-\begin{tabular}{|l|ll|ll}
-\cline{1-3}
-\textbf{QoS} & \multicolumn{1}{l|}{\textbf{CPU}} & \textbf{RAM(MiB)} &  &  \\ \cline{1-3}
-test         & 0.3                                & 104               &  &  \\ \cline{1-1}
-standard     & 2.3                                & 257               &  &  \\ \cline{1-1}
-critical     & 3  & 800               &  &  \\ \cline{1-3}
-\end{tabular}
-\caption{ Resources peak consumption per QoS.}
-\end{table}
-% Show that we have STABLE response times
-
-\subsection{Results: resource provision}
-
-Based on the results seen in measurements section, we can now make an estimation of resource provision for the new infrastructure based on the values retrieved.
-
-For expected memory:
+The expected memory is:
 \[
 \begin{array}{rcl}
 TotalMem & = & C * L + 2* C * I + S * L + T * L \\
@@ -134,7 +175,6 @@ TotalMem & = & C * L + 2* C * I + S * L + T * L \\
 \]
 Where:
 \begin{conditions}
-Expected Load  &  Max Seen load + 20\% overhead \\
  L     &  Expected Max Load for specific QoS website \\
  I     &  Expected Idle Load for specific QoS website \\   
  C     &  Total number of Critical Websites \\
@@ -142,16 +182,6 @@ Expected Load  &  Max Seen load + 20\% overhead \\
  T     & Total number of Test Websites \\
 \end{conditions}
 
-On the physical infrastructure we have provisioned 2TB of memory, on the new Kubernetes infrastructure we have a rough estimation on total memory used if all websites are under load is of about 283GB. The prediction expects to only have 14.15\% of the memory required in the physical infrastructure.
-
-
-For expected cpu:
-\[
-\begin{array}{rcl}
-TotalCPU & = & C * L + 2* C * I + S * L + T * L \\
- & = & 20 * 3VCpu + 2*0.01VCpu + 600* 1.6VCpu + 500* 1VCpu \\
- & = & FINALRESULT
-\end{array}
-\]
-
-
+The physical infrastructure has 2TB of memory. To meet our SLO, the memory estimate for the Kubernetes infrastructure is 283GB.
+This is only \emph{14.15\% of the memory required in the physical infrastructure}, resulting in significant potential cost savings,
+even disregarding cluster autoscaling.

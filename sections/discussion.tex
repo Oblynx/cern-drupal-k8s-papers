@@ -1,20 +1,26 @@
-\subsubsection*{Summary: what were our main points}
+It is striking how big a difference it makes to discuss a design with 10 engineers rather than 3, and to have the peace of mind in case of emergency that many colleagues can take part.
+This is the hidden benefit of sharing a common platform, which this team has already felt.
+Especially in CERN's dynamic environment where the turnover of people is high, knowledge silos can be ill afforded.
 
-- reuse across web frameworks, share expertise, break knowledge silos
-- extensibility to different Content Management Systems
+The Pilot phase of this new infrastructure is still too immature to provide significant operational insights.
+We fully expect a few minor adaptations of the presented design as we scale up to production, but the experiments of
+section \ref{sec-experiment} reassure us that the infrastructure is functional and that modifications should be limited to the details.
+On the other hand, all the limitations of the physical infrastructure of section \ref{sec-limitations} have been lifted.
 
-- Was the end goal of the project achieved?
-- Aftermath design considerations?
-- Places where we could improve?
-
-\subsubsection*{Limitations of this work, what did we not put in because of space / pilot phase}
-
-- design not complete (DBOD integration, application metrics and log processing)
-- migrations in Q2 2021
+The next big challenge will be the production migrations in Q2 2021.
+Development is ongoing, including critical features for production.
+It is important to keep them as transparent to the website admins as possible and minimize disruption.
+From the power users however we expect the new features to receive a warm welcome and open new doors in their workflows.
 
 \subsubsection*{Directions to explore}
 
-- support additional CMS (WordPress) as a Service
-- deeper observability inside PHP
-- metrics/log processing and root cause analysis
-- intrusion detection
+Develop once, run everywhere is a yet-to-be materialized promise.
+Plans for disaster recovery from a catastrophic failure of the CERN data center hinge on maintaining a public communications channel accessible.
+With Kubernetes cluster federation, using Public Cloud resources as a safety net is conceivable.
+
+We will explore adding WordPress as a Service to the same infrastructure.
+Fundamentally, it should take no more than introducing a new build configuration.
+
+The \href{https://landscape.cncf.io/}{CNCF landscape} provides a salient overview of industry-standard solutions that can take this project the proverbial extra "mile".
+We plan to experiment with runtime security, root cause analysis, chaos engineering and serverless for the non-production environments.
+Kubernetes turns a homebrew system into a cosmopolitan denizen of a brave new world of the Cloud.

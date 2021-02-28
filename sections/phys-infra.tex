@@ -1,3 +1,15 @@
+The infrastructure that currently serves the Drupal websites can be seen in figure \ref{fig:drupal-physical-request-journey}.
+It runs on CentOS 7 and uses Puppet for configuration management.
+All servers run the same environment with systemd services, some of which are:
+\begin{itemize}
+    \item HAProxy load balancer: routes requests to worker nodes, with an affinity cookie
+    \item Keepalived: floating IP for the load balancer
+    \item Apache httpd: serves Drupal PHP code, WebDAV interface and a few additional PHP management applications
+    \item php-fpm: maintains a pool of worker processes that generate Drupal content
+\end{itemize}
+
+\subsection{Request journey}
+
 \begin{wrapfigure}{r}{.62\textwidth}
     \centering
     \hspace{-2em}
@@ -8,21 +20,9 @@
     Drupal is configured in multisite mode to look up a separate directory and database for each site.
     The website's {\color{asparagus} 2 data components}: a persistent directory on the NAS and a database on an external service (DBOD).
     }
+    \vspace{-4em}
     \label{fig:drupal-physical-request-journey}
 \end{wrapfigure}
-
-The infrastructure that currently serves the Drupal websites can be see in figure \ref{fig:drupal-physical-request-journey}.
-It runs on CENTOS 7 and uses Puppet for configuration management.
-All servers run the same environment with Systemd services.
-Major services are:
-\begin{itemize}
-    \item HAProxy load balancer: routes requests to worker nodes, with an affinity cookie
-    \item Keepalived: implementation of floating IP for the load balancer
-    \item Apache httpd: serves Drupal PHP code, WebDAV interface and a few additional PHP management applications
-    \item php-fpm: maintains a pool of worker processes that generate Drupal content
-\end{itemize}
-
-\subsection{Request journey}
 
 The journey of an HTTP request can be seen in figure \ref{fig:drupal-physical-request-journey}.
 Production websites respond to the load by spawning PHP workers, up to a maximum of 25.
@@ -35,13 +35,13 @@ The PHP memory limit for every website is 512MB.
 Weak isolation is one of the biggest concerns of this infrastructure.
 Each website is assigned a Linux user.
 Its directory is owned by it and not accessible by the users of other websites.
-When Apache serves a request, it chroots the PHP process into the Drupal directory and sets the website's user.
+When Apache serves a request, it \texttt{chroots} the PHP process into the Drupal directory and sets the website's user.
 This distinction provides a basic isolation mechanism.
 
 Nevertheless, websites are coupled in many places.
 We've never detected a cross-site security incident,
-but there are no cgroup limits to resources, and not enough security layers to defend against privilege escalation exploits.
-This is critical concern, given the vulnerability of CMS software \cite{shteiman_why_2014},
+but there are no \texttt{cgroup} limits to resources, and not enough security layers to defend against privilege escalation exploits.
+This is a critical concern, given the vulnerability of CMS software \cite{shteiman_why_2014},
 and the impact that defacing a high-traffic public site would have to CERN's reputation.
 
 A fundamental security practice is rapidly update upon security releases \cite{csontos_accessibility_2020},
@@ -51,10 +51,10 @@ Errors are supposed to be detected in a test environment, but not every website 
 
 Furthermore, even though websites can be customized with contributed modules, there is no workflow to version control the websites.
 
-\subsubsection*{Development workflow}
+\subsection{Development workflow}
 
 Two types of website are supported administratively, corresponding to different Quality of Service (QoS) expectations: official (production) and test (test and development).
-There is no concept of \emph{"environments"} or branches in this infrastructure. Developing a website involves maintaining a production website and one or more independent development websites.
+There is no concept of \emph{\lq\lq environments\rq\rq} or branches in this infrastructure. Developing a website involves maintaining a production website and one or more independent development websites.
 Data can be cloned between websites, so that the development website reproduce the production one.
 
 A site admin that wants to safely develop a new content type or view, add a new module, or even change configuration, should start by cloning the production website to a development website.
@@ -65,9 +65,10 @@ Despite seeming inefficient from a software engineering perspective, this workfl
 The ones with development experience though would benefit significantly from version controlling configuration changes and extra modules.
 
 \subsection{Limitations of the current infrastructure}
+\label{sec-limitations}
 
 Reiterating the discussion, these are the major limitations of the current infrastructure.
-The Kubernetes infrastructure lifts all of them.
+In section \ref{sec-k8s-design}, the Kubernetes infrastructure lifts all of them.
 
 \begin{itemize}
     \item Hard to adapt resources, resulting in massive under-utilization
