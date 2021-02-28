@@ -25,23 +25,27 @@
 \usepackage{wrapfig}
 \usepackage{tabularx}
 \usepackage{svg}
+\usepackage{natbib}
+\definecolor{amethyst}{rgb}{0.6, 0.4, 0.8}
+\definecolor{asparagus}{rgb}{0.53, 0.66, 0.42}
+\definecolor{darkseagreen}{rgb}{0.56, 0.74, 0.56}
+\definecolor{carolinablue}{rgb}{0.6, 0.73, 0.89}
+\definecolor{beige}{rgb}{0.80, 0.78, 0.63}
+\definecolor{fluorescentorange}{rgb}{.90, 0.65, 0.0}
 
 \begin{document}
 %\title{CERN's 1000 Drupal Websites Move to Kubernetes}
 \title{Building a Kubernetes infrastructure for CERN's Content Management Systems}
 % NOTE: Drupal is probably not a relevant keyword for our audience to be in the title.
-
 \author{\firstname{Konstantinos} \lastname{Samaras-Tsakiris}\inst{1}\fnsep\thanks{\email{konstantinos.samaras-tsakiris@cern.ch}} \and
         \firstname{Rajula} \lastname{Vineet Reddy}\inst{1}\fnsep \and
         \firstname{Francisco} \lastname{Borges Aurindo Barros}\inst{1,2}\fnsep \and
-        \firstname{Eduardo} \lastname{Alvarez Fernandez}\inst{1}
+        \firstname{Eduardo} \lastname{Alvarez Fernandez}\inst{1}\fnsep \and
+        \firstname{Andreas} \lastname{Wagner}\inst{1}
         % etc.
 }
 
-\institute{
-    CERN \and
-    Francisco's uni %TODO
-}
+\institute{CERN \and Instituto Superior Técnico}
 
 \abstract{%
 The infrastructure behind \href{https://home.cern}{home.cern} and 1000 other Drupal websites serves more than 15,000 unique visitors daily.
@@ -49,32 +53,34 @@ To best serve the site owners, a small engineering team needs development speed 
 We designed a new Web Frameworks platform by extending Kubernetes to replace the ageing physical infrastructure and reduce the dependency on homebrew components.
 
 The new platform is modular, built around standard components and thus less complex to operate.
-Some requirements are covered solely by upstream industry-standard projects, 
+Some requirements are covered solely by upstream open source projects, 
 whereas others by components shared across CERN's web hosting platforms.
 We leverage the \href{https://sdk.operatorframework.io/docs/}{Operator framework} and the Kubernetes API
 to get observability, policy enforcement, access control and auditing, and high availability for free.
 Thanks to containers and namespaces, websites are isolated.
 This isolation clarifies security boundaries and minimizes attack surface, while empowering site owners.
 
-As the project enters its pilot phase, at CHEP 2021 we will present the design and operational insights of this system, demonstrating how we drastically reduced our technical debt.
-We will be available to discuss all the details.
+% Explain better that the "operational insights" aren't here yet, but will be at the conference
+In this work we present the open-source design of the new system and contrast it with the one it replaces, demonstrating how we drastically reduced our technical debt.
+As the project enters its pilot phase, at CHEP 2021 we will also share operational insights.
 }
 %
 \maketitle
 %
-\section{Motivation and context}
+\section{Introduction}
 \label{intro}
 \input{sections/intro}
 
-\section{What is the Drupal service?}
+%\section{What is required for Content Management as a Service?}
+\section{Requirements for Content Management as a Service}
 \label{sec-drupalsvc}
 \input{sections/service}
 
-\section{The current (physical) infrastructure}
+\section{Current implementation}
 \label{sec-phys-infra}
 \input{sections/phys-infra}
 
-\section{Designing the Kubernetes infrastructure}
+\section{Pilot Kubernetes implementation}
 \label{sec-k8s-design}
 \input{sections/k8s-design}
 
@@ -85,6 +91,12 @@ We will be available to discuss all the details.
 \section{Discussion}
 \label{sec-discussion}
 \input{sections/discussion}
+
+\section*{Acknowledgements}
+
+This work relies upon the contributions of all members of the Web Frameworks section in the CDA group of CERN's IT department,
+especially those that designed and implemented the common components.
+We thank specifically Alex Lossent, Ismael Posada Trobo, Joao Esteves Marcal, Iago Santos Pardo, Aleksandra Wardzinska, Michal Kolodziejski and Emmanouil Fokas.
 
 \bibliography{references.bib}
 \end{document}

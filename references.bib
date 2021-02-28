@@ -1,4 +1,53 @@
 
+@misc{jarvinen_extending_2019,
+	title = {Extending {Kubernetes} with the {Operator} {Pattern}},
+	url = {/paper/Extending-Kubernetes-with-the-Operator-Pattern-Jarvinen/9358b05fbf487b6bfb36fa978522d52ea01d7218},
+	abstract = {Semantic Scholar extracted view of \&quot;Extending Kubernetes with the Operator Pattern\&quot; by R. Jarvinen},
+	language = {en},
+	urldate = {2021-02-26},
+	journal = {undefined},
+	author = {Jarvinen, R.},
+	year = {2019},
+}
+
+@inproceedings{alvarez_managing_2020,
+	title = {Managing the {CERN} {Batch} {System} with {Kubernetes}},
+	doi = {10.1051/epjconf/202024507048},
+	abstract = {The CERN Batch Service faces many challenges in order to get ready for the computing demands of future LHC runs. These challenges require that we look at all potential resources, assessing how efficiently we use them and that we explore different alternatives to exploit opportunistic resources in our infrastructure as well as outside of the CERN computing centre. Several projects, like BEER, Helix Nebula Science Cloud and the new OCRE project, have proven our ability to run batch workloads on a wide range of non-traditional resources. However, the challenge is not only to obtain the raw compute resources needed but how to define an operational model that is cost and time efficient, scalable and flexible enough to adapt to a heterogeneous infrastructure. In order to tackle both the provisioning and operational challenges it was decided to use Kubernetes. By using Kubernetes we benefit from a de-facto standard in containerised environments, available in nearly all cloud providers and surrounded by a vibrant ecosystem of open-source projects. Leveraging Kubernetes’ built-in functionality, and other open-source tools such as Helm, Terraform and GitLab CI, we have deployed a first cluster prototype which we discuss in detail. The effort has simplified many of the existing operational procedures we currently have, but has also made us rethink established procedures and assumptions that were only valid in a VM-based cloud environment. This contribution presents how we have adopted Kubernetes into the CERN Batch Service, the impact its adoption has in daily operations, a comparison on resource usage efficiency and the experience so far evolving our infrastructure towards this model.},
+	author = {Alvarez, L. F. and Datskova, Olga and Jones, B. and McCance, G.},
+	year = {2020},
+}
+
+@article{hariri_batch_2018,
+	title = {Batch and online anomaly detection for scientific applications in a {Kubernetes} environment},
+	doi = {10.1145/3217880.3217883},
+	abstract = {We present a cloud based anomaly detection service framework that uses a containerized Spark cluster and ancillary user interfaces all managed by Kubernetes. The stack of technology put together allows for fast, reliable, resilient and easily scalable service for either batch or streaming data. At the heart of the service, we utilize an improved version of the algorithm Isolation Forest called Extended Isolation Forest for robust and efficient anomaly detection. We showcase the design and a normal workflow of our infrastructure which is ready to deploy on any Kubernetes cluster without extra technical knowledge. With exposed APIs and simple graphical interfaces, users can load any data and detect anomalies on the loaded set or on newly presented data points using a batch or a streaming mode. With the latter, users can subscribe and get notifications on the desired output. Our aim is to develop and apply these techniques to use with scientific data. In particular we are interested in finding anomalous objects within the overwhelming set of images and catalogs produced by current and future astronomical surveys, but that can be easily adopted to other fields.},
+	journal = {ScienceCloud@HPDC},
+	author = {Hariri, S. and Kind, M. C.},
+	year = {2018},
+}
+
+@misc{hightower_kubernetes_2017,
+	title = {Kubernetes: {Up} and {Running}: {Dive} into the {Future} of {Infrastructure}},
+	shorttitle = {Kubernetes},
+	url = {/paper/Kubernetes%3A-Up-and-Running%3A-Dive-into-the-Future-of-Hightower-Burns/2f0de64ed0cf1d791507372b901bbbfd73e3495c},
+	abstract = {Legend has it that Google deploys over two billion application containers a week. Hows that possible? Google revealed the secret through a project called Kubernetes, an open source cluster orchestrator (based on its internal Borg system) that radically simplifies the task of building, deploying, and maintaining scalable distributed systems in the cloud. This practical guide shows you how Kubernetes and container technology can help you achieve new levels of velocity, agility, reliability, and efficiency. Authors Kelsey Hightower, Brendan Burns, and Joe Bedawhove worked on Kubernetes at Google and other organizatons explain how this system fits into the lifecycle of a distributed application. You will learn how to use tools and APIs to automate scalable distributed systems, whether it is for online services, machine-learning applications, or a cluster of Raspberry Pi computers. Explore the distributed system challenges that Kubernetes addresses Dive into containerized application development, using containers such as Docker Create and run containers on Kubernetes, using the docker image format and container runtime Explore specialized objects essential for running applications in production Reliably roll out new software versions without downtime or errors Get examples of how to develop and deploy real-world applications in Kubernetes},
+	language = {en},
+	urldate = {2021-02-26},
+	journal = {undefined},
+	author = {Hightower, Kelsey and Burns, B. and Beda, J.},
+	year = {2017},
+}
+
+@article{beltre_enabling_2019,
+	title = {Enabling {HPC} {Workloads} on {Cloud} {Infrastructure} {Using} {Kubernetes} {Container} {Orchestration} {Mechanisms}},
+	doi = {10.1109/CANOPIE-HPC49598.2019.00007},
+	abstract = {Containers offer a broad array of benefits, including a consistent lightweight runtime environment through OS-level virtualization, as well as low overhead to maintain and scale applications with high efficiency. Moreover, containers are known to package and deploy applications consistently across varying infrastructures. Container orchestrators manage a large number of containers for microservices based cloud applications. However, the use of such service orchestration frameworks towards HPC workloads remains relatively unexplored. In this paper we study the potential use of Kubernetes on HPC infrastructure for use by the scientific community. We directly compare both its features and performance against Docker Swarm and bare metal execution of HPC applications. Herein, we detail the configurations required for Kubernetes to operate with containerized MPI applications, specifically accounting for operations such as (1) underlying device access, (2) inter-container communication across different hosts, and (3) configuration limitations. This evaluation quantifies the performance difference between representative MPI workloads running both on bare metal and containerized orchestration frameworks with Kubernetes, operating over both Ethernet and InfiniBand interconnects. Our results show that Kubernetes and Docker Swarm can achieve near bare metal performance over RDMA communication when high performance transports are enabled. Our results also show that Kubernetes presents overheads for several HPC applications over TCP/IP protocol. However, Docker Swarm's throughput is near bare metal performance for the same applications.},
+	journal = {2019 IEEE/ACM International Workshop on Containers and New Orchestration Paradigms for Isolated Environments in HPC (CANOPIE-HPC)},
+	author = {Beltre, A. and Saha, P. and Govindaraju, M. and Younge, Andrew and Grant, R.},
+	year = {2019},
+}
+
 @inproceedings{megino_using_2020,
 	title = {Using {Kubernetes} as an {ATLAS} computing site},
 	doi = {10.1051/epjconf/202024507025},
@@ -64,19 +113,6 @@
 	year = {2019},
 	note = {arXiv: 1911.06404},
 	keywords = {Astrophysics - Instrumentation and Methods for Astrophysics},
-}
-
-@inproceedings{shah_building_2019,
-	title = {Building {Modern} {Clouds}: {Using} {Docker}, {Kubernetes} {Google} {Cloud} {Platform}},
-	shorttitle = {Building {Modern} {Clouds}},
-	doi = {10.1109/CCWC.2019.8666479},
-	abstract = {To develop and build a modern cloud infrastructure or DevOps implementation than both Docker and Kubernetes have revolutionized the era of software development and operations. Although both are different, they unify the process of development and integration, it is now possible to build any architecture by using these technologies. Docker is used to build, ship and run any application anywhere. Docker allows the use of the same available resources. These containers can be used to make deployments much faster. Containers use less space, are reliable and are very fast. Docker Swarm helps to manage the docker container. Kubernetes is an automated container management, deployment and scaling platform. Using Google Cloud Platform to deploy containers on Kubernetes Engine enabling rapid application development and management. Kubernetes provides key features like deployment, easy ways to scale, and monitoring.},
-	booktitle = {2019 {IEEE} 9th {Annual} {Computing} and {Communication} {Workshop} and {Conference} ({CCWC})},
-	author = {Shah, J. and Dubaria, D.},
-	month = jan,
-	year = {2019},
-	keywords = {Cloud, Cloud computing, Containers, DevOps implementation, Docker, Docker Swarm, Google, Google Cloud Platform, Google cloud platform, Kubernetes, Kubernetes Engine, Monitoring, Orchestration, Web servers, automated container management, cloud computing, cloud infrastructure, docker container, scaling platform, software development},
-	pages = {0184--0189},
 }
 
 @article{fairbanks_ur-technical_2020,
@@ -702,7 +738,7 @@
 	pages = {8812--8821},
 }
 
-@article{foldiak_forming_1990,
+@article{foldiak_forming_1990-1,
 	title = {Forming sparse representations by local anti-{Hebbian} learning},
 	volume = {64},
 	issn = {1432-0770},

@@ -7,7 +7,7 @@ and transfers knowledge into the new generation of engineers.
 All these factors apply as much to CERN as they apply to Google.
 Despite the much slower pace at which services evolve, CERN lives in the same dynamic technological environment.
 Without a constant input of effort our software falls behind and fails to address modern expectations
-in such aspects as security, high availability, portability and isolation.
+of features and aspects such as security, high availability, portability and isolation.
 At the same time unnecessary complexity accumulates:
 yesterday's custom solutions can often be replaced with new upstream components,
 the product of continuous standardization of solutions to problems that affect entire industries.
@@ -15,65 +15,74 @@ the product of continuous standardization of solutions to problems that affect e
 The increasing divergence between the original requirements the specified a piece of software and present requirements
 results in \emph{technical debt} \cite{fairbanks_ur-technical_2020}.
 The main purpose of this work is to pay back technical debt in CERN's Content Management Systems by modernizing the software architecture
-and making the service more secure and flexible.
+and making the service more secure and flexible (see section \ref{sec-web-frameworks}).
 
 
-\subsection{Introduction to the concepts in this work}
-
-\subsubsection*{Why Kubernetes?}
+\subsection{Why Kubernetes?}
 
 Kubernetes is for cloud native applications an extension of what the operating system is for traditional applications.
-This is highlighted by the moniker "cloud operating system".
-It is becoming a de facto standard for Platform as a Service, abstracting computational infrastructure and making applications deployable to sites across the globe.
+It is becoming a de facto standard for Platform as a Service \cite{kaviani_towards_2019}, abstracting computational infrastructure and standardizing deployment,
+so that an application can run unmodified on sites across the globe.
+Scientific applications are routinely deployed on Kubernetes, such as \cite{banek_why_2019}, \cite{hariri_batch_2018}, \cite{yuan_bioinformatics_2020},
+and even HPC use cases are being investigated \cite{beltre_enabling_2019}.
 
+At CERN the uptake is also evident.
+CERN IT has integrated Kubernetes in the Cloud Infrastructure and allows instant provisioning of new clusters.
+The ATLAS experiment is evaluating the replacement of all Grid computing services with Kubernetes clusters \cite{megino_using_2020}.
+The Batch service, consisting of the largest portion of offline computational workloads at CERN, is prototyping a Kubernetes platform \cite{alvarez_managing_2020}.
+REANA, a system for Reproducible Analyses, is targeting Kubernetes as a main execution backend \cite{simko_reana_2019}.
 
+Many of these use cases are attracted by the promise of development velocity:
+rapidly shipping features, while maintaining highly available services \cite{hightower_kubernetes_2017}.
+A key element is to expand the pieces of a software stack that are immutable and versioned, declaratively configured, and self-healing.
 
-- common platform across web frameworks
-- common components, reuse, expertise sharing
-- isolation
+\subsubsection*{Operator pattern}
+\label{sec-operators}
 
-Mention Operators.
+The Web Frameworks use case is not only about using Kubernetes as a deployment vehicle.
+Since we develop platforms and are concerned with their operational characteristics,
+we extend Kubernetes with custom APIs and controllers, building infrastructure management applications that are part of Kubernetes.
+Our applications range from integrating with other CERN systems to providing website management APIs and automating operations.
 
-\subsubsection*{What is Drupal?}
+But what is included in the task of managing websites?
+The infrastructure, seen as an application, needs to have a concept of a website and let users define the website they need: its name, the technology, parameters etc.
+Once a website is specified, the infrastructure needs to ensure that the website is automatically provisioned and set up.
+More than just a server, this task might include setting up storage and database, and integration with external CERN systems.
+After that, it needs to ensure that every component stays healthy and synchronized, propagating changes as requested by the user to every part.
+
+In many cases, the solution has two components: a custom Kubernetes API and a controller that watches the API and ensures certain conditions.
+This pattern is called \emph{Operator}, because it uses Kubernetes primitives to automate high-level operational workflows specific to the website technology.
+
+\subsection{What is Drupal?}
 \label{what-is-drupal}
 
 Drupal is an open-source content management system (CMS): a tool for site builders to organize and deliver content to their website visitors.
-It's used in 10\% of the top-10k websites with the highest traffic \cite{builtwith_pty_ltd_open_nodate},\cite{q-success_di_gelbmann_gmbh_wordpress_nodate}.
-
-% TODO
-Who is the intended audience that can benefit from a Drupal infrastructure?
-- an organization that needs a dynamic Drupal environment, with lots of site turnover
-- eg: universities, organizations comprising many departments and independent activities
-% TODO
+It's used in 10\% of the top-10k websites with the highest traffic \cite{builtwith_pty_ltd_open_nodate,q-success_di_gelbmann_gmbh_wordpress_nodate}.
 
 The market leader in Drupal's niche is the CMS WordPress \cite{builtwith_pty_ltd_open_nodate}.
 Drupal is often contrasted with it and, according to UX surveys conducted by a Drupal-focused company, seems to offer a complicated start for beginner users,
 but a powerful experience for experts \cite{buytaert_state_nodate}.
 
-Drupal is frequently embraced for being an open source community driven project, which makes it strategically attractive for enterprise sustainability \cite{cern_geneva_real_2019}.
+Drupal is frequently embraced as an open source community-driven project, making it strategically attractive for \emph{enterprise sustainability} \cite{cern_geneva_real_2019}.
 Use cases range from simple blogs to professional newspaper publishing, from enterprise presentation to e-commerce, across government and private sector entities \cite{drupal_community_explore_nodate}.
 A frequently cited feature is the flexibility with which it adapts to bespoke requirements, while scaling to large amounts of content.
 
 \subsubsection*{Drupal at CERN}
 \label{drupal-at-cern}
 
-Content Management Systems -> Drupal
-
-The Drupal service at CERN was established in 2011, responding to a need for a standardized and user-friendly website environment in the Organization.
-Before this, the websites ecosystem was technologically diverse, lacking standards and institutional support.
-The tool was selected over competitors due its extensibility, existing contributed modules and active community.
-
-At CERN, Drupal has become the platform of choice for public outreach.
-We have developed in-house expertise on both Drupal development (with custom themes and components) and hosting.
+Who can benefit from a dedicated infrastructure for CMS websites?
+An organization that needs a dynamic Drupal environment, with high turnover of sites: universities, organizations comprising many departments and independent activities.
+Drupal was selected as Content Management System due its active community and extensibility with contributed modules.
+It has become the platform of choice for public outreach.
 
 \subsection{Article structure}
 
 Having laid down background information on the motivation, technologies and concepts used in this work, in the following sections we will describe:
 
 \begin{tabular}{l|l}
-    Section \ref{sec-drupalsvc} & Content Management as a Service at CERN: \emph{what problem are solving?} \\
-    Section \ref{sec-phys-infra} & The current implementation of the Drupal service \\
-    Section \ref{sec-k8s-design} & The Kubernetes design of its successor, currently in Pilot \\
-    Section \ref{sec-experiment} & A preliminary experimental validation of the new platform \\
-    Section \ref{sec-discussion} & Plans for the future and the nuances of this work \\
+    Section \ref{sec-drupalsvc} & \emph{What are the requirements} of Content Management as a Service at CERN?  \\
+    Section \ref{sec-phys-infra} & What system \emph{currently} serves these requirements? \\
+    Section \ref{sec-k8s-design} & What system did we design on Kubernetes \emph{to replace section \ref{sec-phys-infra}}? \\
+    Section \ref{sec-experiment} & An experimental investigation of the new platform's efficiency \\
+    Section \ref{sec-discussion} & Reflections on this work and plans for the future \\
 \end{tabular}
