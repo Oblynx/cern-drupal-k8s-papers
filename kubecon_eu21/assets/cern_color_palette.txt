@@ -1,0 +1,8 @@
+orange: e15e32
+teal: 1c446a
+blue: 0033a0
+fluorine: f4f7e9
+purple: 6e2466
+
+kubeconOrange: fb333d
+kubeconPurpleLight: 4f0358
