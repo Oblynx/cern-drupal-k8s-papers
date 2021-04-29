@@ -41,10 +41,10 @@ This distinction provides a basic isolation mechanism.
 Nevertheless, websites are coupled in many places.
 We've never detected a cross-site security incident,
 but there are no \texttt{cgroup} limits to resources, and not enough security layers to defend against privilege escalation exploits.
-This is a critical concern, given the vulnerability of CMS software \cite{shteiman_why_2014},
+This is a critical concern, given the vulnerability of CMS software \cite{shteimanWhyCMSPlatforms2014a},
 and the impact that defacing a high-traffic public site would have to CERN's reputation.
 
-A fundamental security practice is rapidly update upon security releases \cite{csontos_accessibility_2020},
+A fundamental security practice is rapidly update upon security releases \cite{csontosAccessibilityUsabilitySecurity2021},
 but updating the multisite environment is fraught with dangers.
 All websites need to be updated in a massive, forced upgrade campaign, and if any has errors, it needs rapid debugging.
 Errors are supposed to be detected in a test environment, but not every website has one.

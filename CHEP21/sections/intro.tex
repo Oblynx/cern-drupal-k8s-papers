@@ -1,4 +1,4 @@
-Google rewrites most of their software every few years \cite{henderson_software_2020}.
+Google rewrites most of their software every few years \cite{hendersonSoftwareEngineeringGoogle2020a}.
 This surprising activity consumes a large fraction of their resources each year!
 And yet, they consider it crucial to their agility and long-term success, because software requirements change as technologies evolve -- and with them, user expectations.
 This practice typically reduces unnecessary complexity in each iteration,
@@ -13,7 +13,7 @@ yesterday's custom solutions can often be replaced with new upstream components,
 the product of continuous standardization of solutions to problems that affect entire industries.
 
 The increasing divergence between the original requirements the specified a piece of software and present requirements
-results in \emph{technical debt} \cite{fairbanks_ur-technical_2020}.
+results in \emph{technical debt} \cite{fairbanksUrTechnicalDebt2020a}.
 The main purpose of this work is to pay back technical debt in CERN's Content Management Systems by modernizing the software architecture
 and making the service more secure and flexible (see section \ref{sec-web-frameworks}).
 
@@ -21,19 +21,19 @@ and making the service more secure and flexible (see section \ref{sec-web-framew
 \subsection{Why Kubernetes?}
 
 Kubernetes is for cloud native applications an extension of what the operating system is for traditional applications.
-It is becoming the de facto standard for Platform as a Service \cite{kaviani_towards_2019}, abstracting computational infrastructure and standardizing deployment,
+It is becoming the de facto standard for Platform as a Service \cite{kavianiServerlessCommodityCase2019a}, abstracting computational infrastructure and standardizing deployment,
 so that an application can run unmodified on sites across the globe.
-Scientific applications are routinely deployed on Kubernetes \cite{banek_why_2019, hariri_batch_2018, yuan_bioinformatics_2020},
-and even HPC use cases are being investigated \cite{beltre_enabling_2019}.
+Scientific applications are routinely deployed on Kubernetes \cite{banekWhyLSSTScience2019, haririBatchOnlineAnomaly2018a, yuanBioinformaticsApplicationKubeflow2020a},
+and even HPC use cases are being investigated \cite{beltreEnablingHPCWorkloads2019}.
 
 At CERN the uptake is also evident.
 CERN IT has integrated Kubernetes in the Cloud Infrastructure and allows instant provisioning of new clusters.
-The ATLAS experiment is evaluating the replacement of all Grid computing services with Kubernetes clusters \cite{megino_using_2020}.
-The Batch service, consisting of the largest portion of offline computational workloads at CERN, is prototyping a Kubernetes platform \cite{alvarez_managing_2020}.
-REANA, a system for Reproducible Analyses, is targeting Kubernetes as a main execution backend \cite{simko_reana_2019}.
+The ATLAS experiment is evaluating the replacement of all Grid computing services with Kubernetes clusters \cite{meginoUsingKubernetesATLAS2020a}.
+The Batch service, consisting of the largest portion of offline computational workloads at CERN, is prototyping a Kubernetes platform \cite{alvarezManagingCERNBatch2020a}.
+REANA, a system for Reproducible Analyses, is targeting Kubernetes as a main execution backend \cite{simkoREANASystemReusable2019a}.
 
 Many of these use cases are attracted by the promise of development velocity:
-rapidly shipping features, while maintaining highly available services \cite{hightower_kubernetes_2017}.
+rapidly shipping features, while maintaining highly available services \cite{hightowerKubernetesRunningDive2017}.
 A key element is to expand the pieces of a software stack that are immutable and versioned, declaratively configured, and self-healing.
 
 \subsubsection*{Operator pattern}
@@ -57,14 +57,14 @@ This pattern is called \emph{Operator}, because it uses Kubernetes primitives to
 \label{what-is-drupal}
 
 Drupal is an open-source \emph{Content Management System} (CMS): a tool for site builders to organize and deliver content to their website visitors.
-It's used in 10\% of the top-10k websites with the highest traffic \cite{builtwith_pty_ltd_open_nodate,q-success_di_gelbmann_gmbh_wordpress_nodate}.
+It's used in 10\% of the top-10k websites with the highest traffic \cite{builtwithptyltdOpenSourceUsage,q-successdigelbmanngmbhWordPressVsDrupal}.
 
-The market leader in Drupal's niche is the CMS WordPress \cite{builtwith_pty_ltd_open_nodate}.
+The market leader in Drupal's niche is the CMS WordPress \cite{builtwithptyltdOpenSourceUsage}.
 Drupal is often contrasted with it and, according to UX surveys conducted by a Drupal-focused company, seems to offer a complicated start for beginner users,
-but a powerful experience for experts \cite{buytaert_state_nodate}.
+but a powerful experience for experts \cite{buytaertStateDrupalPresentation}.
 
-Drupal is frequently embraced as an open source community-driven project, making it strategically attractive for \emph{enterprise sustainability} \cite{cern_geneva_real_2019}.
-Use cases range from simple blogs to professional newspaper publishing, from enterprise presentation to e-commerce, across government and private sector entities \cite{drupal_community_explore_nodate}.
+Drupal is frequently embraced as an open source community-driven project, making it strategically attractive for \emph{enterprise sustainability} \cite{cern.genevaRealCostsOpen2019}.
+Use cases range from simple blogs to professional newspaper publishing, from enterprise presentation to e-commerce, across government and private sector entities \cite{drupalcommunityExploreFeaturedCase}.
 A frequently cited feature is the flexibility with which it adapts to bespoke requirements, while scaling to large amounts of content.
 
 \subsubsection*{Drupal at CERN}
