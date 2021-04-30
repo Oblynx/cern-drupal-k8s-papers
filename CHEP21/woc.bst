@@ -85,7 +85,7 @@ ENTRY
     type
     url
     volume
-    date
+    year
   }
   {}
   { label extra.label sort.label short.list }
@@ -1465,9 +1465,9 @@ FUNCTION {word.in}
   " " * }
 
 FUNCTION {format.date}
-{ date "" bibinfo.check duplicate$ empty$    
+{ year "" bibinfo.check duplicate$ empty$    
     {
-      "empty date in " cite$ * "; set to ????" * warning$
+      "empty year in " cite$ * "; set to ????" * warning$
        pop$ "????"
     }
     'skip$
@@ -1478,7 +1478,7 @@ FUNCTION {format.date}
 }
 FUNCTION {format.date.misc}
 {
-  date empty$ 'skip$ {
+  year empty$ 'skip$ {
   format.date "year" output.check
   } if$
 }
@@ -1795,8 +1795,8 @@ FUNCTION {format.org.or.pub}
           if$
         }
       if$
-      date duplicate$ empty$
-        { "empty date in " cite$ * "; set to ????" * warning$
+      year duplicate$ empty$
+        { "empty year in " cite$ * "; set to ????" * warning$
            pop$ "????" }
         { "" bibinfo.check     
         extra.label * }
@@ -2182,7 +2182,7 @@ FUNCTION {calc.label}
   short.list
   "("
   *
-  date duplicate$ empty$
+  year duplicate$ empty$
   short.list key field.or.null = or
      { pop$ "" }
      'skip$
@@ -2347,7 +2347,7 @@ FUNCTION {bib.sort.order}
 { sort.label
   "    "
   *
-  date field.or.null sortify
+  year field.or.null sortify
   *
   "    "
   *
