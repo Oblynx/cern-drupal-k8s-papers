@@ -34,7 +34,7 @@ Many of these use cases are attracted by the promise of development velocity:
 rapidly shipping features, while maintaining highly available services \cite{hightowerKubernetesRunningDive2017}.
 A key element is to expand the pieces of a software stack that are immutable and versioned, declaratively configured, and self-healing.
 
-\subsubsection*{Operator framework}
+\subsubsection*{Operator Pattern \cite{operatorPattern}}
 \label{sec-operators}
 
 The Web Frameworks use case is not only about using Kubernetes as a deployment vehicle.
@@ -51,27 +51,20 @@ After that, it needs to ensure that every component stays healthy and synchroniz
 In many cases, the solution has two components: a custom Kubernetes API and a controller that watches the API and ensures certain conditions.
 This pattern is called \emph{Operator}, because it uses Kubernetes primitives to automate high-level operational workflows specific to the website technology.
 
-\subsection{What is Drupal?}
+\subsection{Drupal at CERN}
 \label{what-is-drupal}
+\label{drupal-at-cern}
 
 Drupal is an open-source \emph{Content Management System} (CMS): a tool for site builders to organize and deliver content to their website visitors.
 It's used in 10\% of the top-10k websites with the highest traffic \cite{builtwithptyltdOpenSourceUsage,q-successdigelbmanngmbhWordPressVsDrupal}.
 
-The market leader in Drupal's niche is the CMS WordPress \cite{builtwithptyltdOpenSourceUsage}.
-Drupal is often contrasted with it and, according to UX surveys conducted by a Drupal-focused company, seems to offer a complicated start for beginner users,
-but a powerful experience for experts \cite{buytaertStateDrupalPresentation}.
-
-Drupal is frequently embraced as an open source community-driven project, making it strategically attractive for \emph{enterprise sustainability} \cite{cern.genevaRealCostsOpen2019}.
-Use cases range from simple blogs to professional newspaper publishing, from enterprise presentation to e-commerce, across government and private sector entities \cite{drupalcommunityExploreFeaturedCase}.
-A frequently cited feature is the flexibility with which it adapts to bespoke requirements, while scaling to large amounts of content.
-
-\subsubsection*{Drupal at CERN}
-\label{drupal-at-cern}
-
-Who can benefit from a dedicated infrastructure for CMS websites?
+\emph{Who can benefit from a dedicated infrastructure for CMS websites?}
 An organization that needs a dynamic Drupal environment, with high turnover of sites: universities, organizations comprising many departments and independent activities.
-Drupal was selected as Content Management System due its active community and extensibility with contributed modules.
-It has become the platform of choice for public outreach.
+Drupal is frequently embraced as an open source community-driven project \cite{buytaertStateDrupalPresentation}, making it strategically attractive for \emph{enterprise sustainability} \cite{cern.genevaRealCostsOpen2019}.
+Use cases range from simple blogs to professional newspaper publishing, from enterprise presentation to e-commerce, across government and private sector entities \cite{drupalcommunityExploreFeaturedCase}.
+A frequently cited feature is the flexibility with which it adapts to bespoke requirements (custom modules),
+while scaling to large amounts of content and complicated editorial workflows.
+It has become the platform of choice for \emph{public outreach}.
 
 \subsection{Article structure}
 
