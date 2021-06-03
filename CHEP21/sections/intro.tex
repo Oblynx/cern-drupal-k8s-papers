@@ -1,20 +1,18 @@
 Google rewrites most of their software every few years \cite{hendersonSoftwareEngineeringGoogle2020a}.
-This surprising activity consumes a large fraction of their resources each year!
-And yet, they consider it crucial to their agility and long-term success, because software requirements change as technologies evolve -- and with them, user expectations.
-This practice typically reduces unnecessary complexity in each iteration,
-and transfers knowledge into the new generation of engineers.
+Despite the cost, they consider it crucial to long-term success,
+because software requirements change as technologies evolve -- and with them, user expectations.
+This practice typically reduces complexity and transfers knowledge into the new generation of engineers.
 
-All these factors apply as much to CERN as they apply to Google.
+All these factors apply to CERN.
 Despite the much slower pace at which services evolve, CERN lives in the same dynamic technological environment.
-Without a constant input of effort our software falls behind and fails to address modern expectations
+Without a constant input of effort, our software falls behind and fails to address modern expectations
 of features and aspects such as security, high availability, portability and isolation.
 At the same time unnecessary complexity accumulates:
 yesterday's custom solutions can often be replaced with new upstream components,
 the product of continuous standardization of solutions to problems that affect entire industries.
 
-The increasing divergence between the original requirements the specified a piece of software and present requirements
-results in \emph{technical debt} \cite{fairbanksUrTechnicalDebt2020a}.
-The main purpose of this work is to pay back technical debt in CERN's Content Management Systems by modernizing the software architecture
+The increasing divergence between the original and present requirements results in \emph{technical debt} \cite{fairbanksUrTechnicalDebt2020a}.
+The main purpose of this work is to \emph{pay back technical debt} in CERN's Content Management Systems by modernizing the software architecture
 and making the service more secure and flexible (see section \ref{sec-web-frameworks}).
 
 
@@ -36,7 +34,7 @@ Many of these use cases are attracted by the promise of development velocity:
 rapidly shipping features, while maintaining highly available services \cite{hightowerKubernetesRunningDive2017}.
 A key element is to expand the pieces of a software stack that are immutable and versioned, declaratively configured, and self-healing.
 
-\subsubsection*{Operator pattern}
+\subsubsection*{Operator framework}
 \label{sec-operators}
 
 The Web Frameworks use case is not only about using Kubernetes as a deployment vehicle.
