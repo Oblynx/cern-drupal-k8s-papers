@@ -10,7 +10,14 @@ All servers run the same environment with systemd services, some of which are:
 
 \subsection{Request journey}
 
+The journey of an HTTP request can be seen in figure \ref{fig:drupal-physical-request-journey}.
+Production websites respond to the load by spawning PHP workers, up to a maximum of 25.
+A worker process is always listening for requests, even without load.
+Test websites, on the other hand, spawn the first worker on demand and scale up to a maximum of 10 workers.
+The PHP memory limit for every website is 512MB.
+
 \begin{wrapfigure}{r}{.62\textwidth}
+    \vspace{-4em}
     \centering
     \hspace{-2em}
     \includegraphics[width=.66\textwidth]{figures/drupal-physical-request-journey}
@@ -20,15 +27,9 @@ All servers run the same environment with systemd services, some of which are:
     Drupal is configured in multisite mode to look up a separate directory and database for each site.
     The website's {\color{asparagus} 2 data components}: a persistent directory on the NAS and a database on an external service (DBOD).
     }
-    \vspace{-4em}
+    \vspace{-2em}
     \label{fig:drupal-physical-request-journey}
 \end{wrapfigure}
-
-The journey of an HTTP request can be seen in figure \ref{fig:drupal-physical-request-journey}.
-Production websites respond to the load by spawning PHP workers, up to a maximum of 25.
-A worker process is always listening for requests, even without load.
-Test websites, on the other hand, spawn the first worker on demand and scale up to a maximum of 10 workers.
-The PHP memory limit for every website is 512MB.
 
 \subsection{Website isolation}
 

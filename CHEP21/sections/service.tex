@@ -37,15 +37,6 @@ This is an intrinsic characteristic of the service load, which is heavily skewed
 \begin{figure}[t]
     \centering
     \vspace{-3em}
-    \begin{subfigure}[b]{.7\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{figures/website-bandwidth}
-        \caption{\emph{Maximum sustained throughput for high traffic websites}.
-          The maximum throughput of the highest traffic websites was recorded over a period of 5 days.
-          The websites with the highest traffic also have the highest throughput, showing that sustained bursts of traffic are uncommon.}
-        \label{fig:website_bandwidth}
-    \end{subfigure}
-    \hfill
     \begin{subfigure}[b]{.25\textwidth}
     \includegraphics[width=\textwidth]{figures/drupal-top10-uniqClientIP.png}
     \caption{\emph{Public outreach}: 
@@ -53,6 +44,15 @@ This is an intrinsic characteristic of the service load, which is heavily skewed
         home.cern appears twice as \texttt{home.cern} and \texttt{home.web.cern.ch}.
         {\color{amethyst} \texttt{timeline.web.cern.ch}} has machine traffic.}
     \label{fig-drp-top10-cip}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{.7\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/website-bandwidth}
+        \caption{\emph{Maximum sustained throughput for high traffic websites}.
+          The maximum throughput of the highest traffic websites was recorded over a period of 5 days.
+          The websites with the highest traffic also have the highest throughput, showing that sustained bursts of traffic are uncommon.}
+        \label{fig:website_bandwidth}
     \end{subfigure}
     \vspace{-1.8em}
     \caption{Load characteristics}
@@ -71,4 +71,4 @@ What sustained rate of requests should a website be able to handle with stable r
 To better understand how the load impacts a single website (and therefore estimate the required hosting resources),
 we performed the measurements of figure \ref{fig:website_bandwidth}.
 
-These observations align with expectations and requirements: critical websites should be able to handle a throughput of 40 requests per second with stable response times.
+These observations align with expectations and requirements: critical websites should be able to handle a throughput of 30 requests per second with stable response times.
