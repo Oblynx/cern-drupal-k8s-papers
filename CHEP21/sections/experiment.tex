@@ -21,8 +21,8 @@ We perform a stress test to emulate the throughput and define the appropriate ba
 \vspace{-2em}
 \includegraphics[width=1.1\linewidth]{figures/experiment-figures/critical_run.png}
 \caption{\emph{Stress test for the Critical QoS}.
-The right Y-axis shows the load for {\color[HTML]{F66565} \texttt{nurseryschool}} and {\color[HTML]{5D8AA8} \texttt{fluka}}.
-The left Y-axis shows the response time (average over simultaneous requests) for {\color[HTML]{D23232} \texttt{nurseryschool}} and {\color[HTML]{0000FF} \texttt{fluka}}.}
+The right Y-axis shows the load for {\color[HTML]{b22222} \texttt{nurseryschool}} and {\color[HTML]{0000A0} \texttt{fluka}}.
+The left Y-axis shows the response time (average over simultaneous requests) for {\color[HTML]{23CDCD} \texttt{nurseryschool}} and {\color[HTML]{636efa} \texttt{fluka}}.}
 \label{stress_usage}
 \vspace{-2em}
 \end{figure}
@@ -89,7 +89,7 @@ The 3 QoS classes are:
         \cline{1-3}
         \textbf{website} & \multicolumn{1}{l|}{\textbf{Stress (req/s)}} & \textbf{Response (ms)} &  &  \\ \cline{1-3}
         nurseryschool    & 41  & 870   &  &  \\ \cline{1-1}
-        fluka            & 74  & 600   &  &  \\ \cline{1-3}
+        fluka            & 74  & 400   &  &  \\ \cline{1-3}
         \end{tabular}
     \caption{Critical}
     \end{subtable}
@@ -166,25 +166,24 @@ Table \ref{table_of_resources} summarizes the test results in terms of resources
 
 Based on the results in section \ref{sec:measurements}, we can see that response time may vary between QoS but remain under acceptable values.
 We can now estimate the baseline resources for the new infrastructure.
-The Expected Load is the maximum load registered during the tests plus 20\% overhead.
+The Expected Load is the maximum load registered during the tests plus 25\% overhead.
 
 The expected memory is:
 \[
 \begin{array}{rcl}
-TotalMem & = & C * L + 2* C * I + S * L + T * L \\
- & = & 20 * 960MiB + 20*104MiB + 600*309MiB + 500*125MiB \\
- & = & 269180MiB  \approx  282.3GB
+TotalMem & = & 1.25 * (C * L_c + S * L_s + T * L_t) \\
+ & = & 20*1000MiB + 600*322MiB + 500*130MiB \\
+ & = & 277750MiB  \approx  336GB
 \end{array}
 \]
 Where:
 \begin{conditions}
- L     &  Expected Max Load for specific QoS website \\
- I     &  Expected Idle Load for specific QoS website \\   
- C     &  Total number of Critical Websites \\
+ L_i   & Expected max memory for each QoS class (table \ref{table_of_resources}) \\
+ C     & Total number of Critical Websites \\
  S     & Total number of Standard Websites \\
  T     & Total number of Test Websites \\
 \end{conditions}
 
-The physical infrastructure has 2TB of memory. To meet our SLO, the memory estimate for the Kubernetes infrastructure is 283GB.
-This is only \emph{14.15\% of the memory required in the physical infrastructure}, resulting in significant potential cost savings,
+The physical infrastructure has 2TB of memory. To meet our SLO, the memory estimate for the Kubernetes infrastructure is 336GB.
+This is only \emph{16.8\% of the memory required in the physical infrastructure}, resulting in significant potential cost savings,
 even disregarding cluster autoscaling.
