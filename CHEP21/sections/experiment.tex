@@ -21,15 +21,18 @@ We perform a stress test to emulate the throughput and define the appropriate ba
 \vspace{-2em}
 \includegraphics[width=1.1\linewidth]{figures/experiment-figures/critical_run.png}
 \caption{\emph{Stress test for the Critical QoS}.
+2 representative websites are tested, a smaller (\texttt{fluka}) and a larger one (\texttt{nurseryschool}).
 The right Y-axis shows the load for {\color[HTML]{b22222} \texttt{nurseryschool}} and {\color[HTML]{0000A0} \texttt{fluka}}.
-The left Y-axis shows the response time (average over simultaneous requests) for {\color[HTML]{23CDCD} \texttt{nurseryschool}} and {\color[HTML]{636efa} \texttt{fluka}}.}
+The left Y-axis shows the response time (average over simultaneous requests) for {\color[HTML]{23CDCD} \texttt{nurseryschool}} and {\color[HTML]{636efa} \texttt{fluka}}.
+The response time increases as requests from simultaneous clients gradually pile up, while the number of PHP workers grows, until request rate and worker throughput reach an equilibrium.}
 \label{stress_usage}
 \vspace{-2em}
 \end{figure}
 
 To define the load each QoS class needs to handle, we use the physical infrastructure as starting point (fig. \ref{fig:website_bandwidth}).
-Throughput peaked on the most popular website at around 16000 requests per hour, which averages on 4.4 requests per second.
-We define 3 QoS classes, which serve as Service Level Objectives (SLO), against the Service Level Indicator (SLI) of response latency under load.
+Throughput peaked on the most popular website at around 16000 requests per hour, or 4.4 req/sec.
+Its typical response time under heavy load is 7 seconds, suggesting that up to 30 simultaneous clients were connected.
+Based on this, we define 3 QoS classes, which serve as Service Level Objectives (SLO), against the Service Level Indicator (SLI) of response latency under load.
 Because the latency depends on the complexity of each website, which is in the hands of the website admins and not the infrastructure,
 the SLO is met \emph{not by defining a set value of the SLI, but by asserting that the SLI be stable}
 \footnote{Stability is interpreted as the latency settling to a fixed value after some time with steady load}.
@@ -37,11 +40,11 @@ The 3 QoS classes are:
 
 \begin{itemize}
     \item \textbf{Critical}: the most popular websites and therefore the most important to have high availability and request throughput (see section \ref{sec-load}).
-    They need to handle 30 requests per second (around 8 times the average on peak usage).
+    They need to handle 30 simultaneous clients.
     \item \textbf{Standard}: these websites usually don't handle as much traffic and therefore don't need to have high request throughput.
-    They need to handle 5 requests per second. 
+    They need to handle 5 simultaneous clients.
     \item \textbf{Test}: as in the name itself, these websites are used by website managers to test new features, and therefore are used by testers and developers.
-    They only need to handle 1 request per second.
+    They only need to handle 1 simultaneous client.
 \end{itemize}
 %- entire infra: 250 req/sec
 %- critical website: 35 req/sec
@@ -64,9 +67,9 @@ The 3 QoS classes are:
 
 \subsection{Stress test}
 
-\begin{wraptable}{r}{.53\textwidth}
+\begin{wraptable}{r}{.47\textwidth}
     \centering
-    \begin{subtable}{0.5\textwidth}
+    \begin{subtable}{0.49\textwidth}
         \begin{tabular}{|l|ll|ll}
         \cline{1-3}
         \textbf{website} & \multicolumn{1}{l|}{\textbf{Stress (req/s)}} & \textbf{Response (ms)} &  &  \\ \cline{1-3}
@@ -75,7 +78,7 @@ The 3 QoS classes are:
         \end{tabular}
     \caption{Test}
     \end{subtable}
-    \begin{subtable}{0.5\textwidth}
+    \begin{subtable}{0.49\textwidth}
         \begin{tabular}{|l|ll|ll}
         \cline{1-3}
         \textbf{website} & \multicolumn{1}{l|}{\textbf{Stress (req/s)}} & \textbf{Response (ms)} &  &  \\ \cline{1-3}
@@ -84,7 +87,7 @@ The 3 QoS classes are:
         \end{tabular}
     \caption{Standard}
     \end{subtable}
-    \begin{subtable}{0.5\textwidth}
+    \begin{subtable}{0.49\textwidth}
         \begin{tabular}{|l|ll|ll}
         \cline{1-3}
         \textbf{website} & \multicolumn{1}{l|}{\textbf{Stress (req/s)}} & \textbf{Response (ms)} &  &  \\ \cline{1-3}
@@ -94,8 +97,8 @@ The 3 QoS classes are:
     \caption{Critical}
     \end{subtable}
     \vspace{-1.5em}
-    \caption{\emph{Stress test values for each QoS class}: max response latency and minimum load throughput.}
-    \vspace{-2.2em}
+    \caption{\emph{Stress/response at equilibrium}. The number of simultaneous clients increases with the QoS class, resulting in higher throughput, but also latency. These numbers correspond to figure \ref{stress_usage}: min stress and the max latency after t=500sec}
+    \vspace{-3.2em}
     \label{tab:stress-response}
 \end{wraptable}
 
